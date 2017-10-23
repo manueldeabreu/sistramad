@@ -18,13 +18,20 @@
     <div id="menu" class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <% if current_user.has_role? :admin %>
+            <li><%= link_to 'Administrar Trámites', admin_procedures_path %></li>
+            <!-- 
             <li><%= link_to t(:reference), references_path %></li>
             <li><%= link_to t(:reference_lists), reference_lists_path %></li>
-            <li><%= link_to t(:users), users_path %></li>
-            <li><%= link_to t(:roles), roles_path %></li>
             <li><%= link_to t(:employees), employees_path %></li>
             <li><%= link_to t(:faculties), faculties_path %></li>
+            -->
+            <% if current_user.has_role? :system_admin %>
+                <li><%= link_to t(:users), users_path %></li>
+                <li><%= link_to t(:roles), roles_path %></li>
+            <% end %>
         <% end %>
+        
+        
         <!-- Messages: style can be found in dropdown.less-->
         <li class="dropdown messages-menu">
           <!-- Menu toggle button -->
@@ -91,7 +98,12 @@
             <!-- The user image in the navbar-->
             <%= image_tag "user2-160x160.jpg" , :class=>"user-image", :alt=>"User Image"%>
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs">Jesús De Abreu</span>
+            <% if current_user.first_name.empty? %>
+            <span class="hidden-xs"><%= current_user.username%></span>
+            <% else %>
+            <span class="hidden-xs"><%= current_user.first_name.camelize(:upper) %></span>
+            <span class="hidden-xs"><%= current_user.last_name.camelize(:upper) %></span>
+            <% end%>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
@@ -99,8 +111,8 @@
               <%= image_tag "user2-160x160.jpg" , :class=>"img-circle", :alt=>"User Image"%>
 
               <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
+                <%= current_user.first_name %> <%= current_user.last_name %>
+                <small>Miembro desde <%= current_user.remember_created_at %></small> 
               </p>
             </li>
             <!-- Menu Body -->
@@ -124,7 +136,7 @@
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                <%= link_to("Log out", destroy_user_session_path, class: 'btn btn-md btn-danger' , method: :delete) %>
               </div>
             </li>
           </ul>

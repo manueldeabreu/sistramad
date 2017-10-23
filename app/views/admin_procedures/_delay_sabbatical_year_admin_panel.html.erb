@@ -1,0 +1,48 @@
+<div class="col-md-6">
+  <br>
+  <div class="panel panel-primary">
+    <div 
+      class="panel-heading">Acciones disponibles:
+    </div>
+
+    <div class="panel-body">
+      <ul>
+        <h4>
+
+          <% @document = find_document_by_code(@procedure, "OSD")%>
+          <% step = @procedure.steps.find_by(name: "#1")%>
+       
+          <% if step.in_progress? and current_user.has_role?(:consejo_facultad)%>
+          <p><li> <%= link_to "Aprobar oficio de solicitud de diferimiento.", 
+              show_document_admin_procedure_path(document_code: 'OSD', step: '#1') %> </li></p>
+          <% end %>
+           
+          <!--
+            <p><li> <%= link_to "Cargar Oficio de aprobación del diferimiento", 
+                new_document_path(name: 'Aprobacion de Solicitud de Diferimiento', code: 'ASD', procedure: @procedure, step: '#2') %> </li></p>
+          -->
+          <% @document = find_document_by_code(@procedure, "CDAP")%>
+          <% if @document.nil? %>
+            <% if current_user.has_role?(:consejo_departamento) and step_approved?("#1") %>
+              <p><li> <%= link_to "Generar constancia de aprobación del diferimiento", generate_approval_document_admin_procedure_path(procedure: @procedure, format: :pdf) %> </li></p>               
+            <% end %>
+          <% else %>
+            <p><li> <%= link_to "Editar documento de aprobación del diferimiento.", edit_document_path(@document) %> </li></p>
+          <% end %>
+          
+          <br>
+          <div class='text-center'>
+            <% if @procedure.in_progress? and current_user.has_role?(:consejo_departamento) %>
+              <%= link_to approve_procedure_admin_procedure_path(@procedure) , class: 'btn btn-success btn-lg list' do %>
+                <i class="glyphicon glyphicon-cog"></i> Aprobar solicitud
+              <% end %>
+            <% end %>
+          </div>
+
+        </h4>
+      </ul>
+    </div>
+
+
+  </div>
+</div>

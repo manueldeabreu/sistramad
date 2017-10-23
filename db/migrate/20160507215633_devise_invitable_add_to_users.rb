@@ -1,4 +1,5 @@
-class DeviseInvitableAddToUsers < ActiveRecord::Migration
+
+class DeviseInvitableAddToUsers < ActiveRecord::Migration[5.1]
   def up
     change_table :users do |t|
       t.string     :invitation_token
@@ -21,3 +22,4 @@ class DeviseInvitableAddToUsers < ActiveRecord::Migration
     end
   end
 end
+

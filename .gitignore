@@ -4,8 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
+## Environment normalization:
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -35,3 +36,7 @@ doc/
 /public/uploads/*
 
 .secret
+.byebug_history
+
+#para que no tome los documentos subidos por el tramite de luis en git
+/public/system

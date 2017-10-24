@@ -8,15 +8,15 @@ class RequestManagerController < ApplicationController
     
       def show
         @professors_transfer = ProfessorsTransfer.find(params[:id])
-        docs = FormalitiesMaster.find_by(name: @professors_transfer.process_type.name ).documents   
+        docs = FormalitiesMaster.find_by(name: @professors_transfer.process_type.name ).transfer_documents   
         u_id = @professors_transfer.user_id
-        @attachments = User.find_by(id: u_id).attachments.where(:document_id => docs)
+        @transfer_attachments = User.find_by(id: u_id).transfer_attachments.where(:transfer_document_id => docs)
       end
     
       def initial_requirements
-        docs = FormalitiesMaster.find_by(name: @professors_transfer.process_type.name ).documents   
+        docs = FormalitiesMaster.find_by(name: @professors_transfer.process_type.name ).transfer_documents   
         u_id = @professors_transfer.user_id
-        @attachments = User.find_by(id: u_id).attachments.where(:document_id => docs)
+        @transfer_attachments = User.find_by(id: u_id).transfer_attachments.where(:transfer_document_id => docs)
       end
 
       def approve_initial_requirements
@@ -45,12 +45,12 @@ class RequestManagerController < ApplicationController
 
       def show_document
         @professorstransfer = ProfessorsTransfer.find(params[:id])
-        @document = @professorstransfer.documents.find_by(code: params[:document_code])
+        @transfer_document = @professorstransfer.transfer_documents.find_by(code: params[:transfer_document_code])
         @step = @professorstransfer.steps.find_by(name: params[:step])
       end
     
       def approve_document
-        @document = Document.find(params[:id])
+        @transfer_document = TransferDocument.find(params[:id])
         @professorstransfer = ProfessorsTransfer.find(ProfessorsTransfer)
       end
     
@@ -144,16 +144,16 @@ class RequestManagerController < ApplicationController
         end
 
         def generate_pdf?(professors_transfer, user)
-          attachment = Attachment.new
+          transfer_attachment = TransferAttachment.new
           type = FormalitiesMaster.find_by(id: 1)
           if ( professors_transfer.process_type == type)
-            attachment.document = Document.find_by(name: 'Copia de Oficio de Aprobación de Traslado')
-            attachment.process_id = professors_transfer
+            transfer_attachment.transfer_document = TransferDocument.find_by(name: 'Copia de Oficio de Aprobación de Traslado')
+            transfer_attachment.process_id = professors_transfer
           else
-            attachment.document = Document.find_by(name: 'Copia de Oficio de Aprobacion de Cambio en Dedicacion')
-            attachment.process_id = professors_transfer
+            transfer_attachment.document = TransferDocument.find_by(name: 'Copia de Oficio de Aprobacion de Cambio en Dedicacion')
+            transfer_attachment.process_id = professors_transfer
           end  
-          attachment.user = user    
+          transfer_attachment.user = user    
         
           pdf = render_to_string pdf: "traslado_aprobacion", template: 'request_manager/traslado_aprobacion', encoding: "UTF-8"
     
@@ -162,9 +162,9 @@ class RequestManagerController < ApplicationController
           tempfile.write pdf
           
     
-          attachment.file = tempfile
+          transfer_attachment.file = tempfile
           tempfile.close
-          attachment.save     
+          transfer_attachment.save     
         end
 
       end

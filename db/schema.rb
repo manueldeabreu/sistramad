@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20171007213808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attachments", force: :cascade do |t|
+  create_table "transfer_attachments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "document_id"
+    t.integer  "transfer_document_id"
     t.string   "link"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20171007213808) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "documents", force: :cascade do |t|
+  create_table "transfer_documents", force: :cascade do |t|
     t.string   "name"
     t.integer  "status"
     t.datetime "created_at", null: false
@@ -102,12 +102,12 @@ ActiveRecord::Schema.define(version: 20171007213808) do
 
   create_table "formalities_documents", force: :cascade do |t|
     t.integer  "formalities_master_id"
-    t.integer  "document_id"
+    t.integer  "transfer_document_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
 
-  add_index "formalities_documents", ["document_id"], name: "index_formalities_documents_on_document_id", using: :btree
+  add_index "formalities_documents", ["transfer_document_id"], name: "index_formalities_documents_on_document_id", using: :btree
   add_index "formalities_documents", ["formalities_master_id"], name: "index_formalities_documents_on_formalities_master_id", using: :btree
 
   create_table "formalities_masters", force: :cascade do |t|
@@ -118,17 +118,6 @@ ActiveRecord::Schema.define(version: 20171007213808) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
-
-  create_table "joint_plans", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.integer  "status"
-    t.datetime "created"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "joint_plans", ["user_id"], name: "index_joint_plans_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -315,7 +304,7 @@ ActiveRecord::Schema.define(version: 20171007213808) do
   add_index "workflow_steps", ["role_id"], name: "index_workflow_steps_on_role_id", using: :btree
 
   add_foreign_key "employees", "users"
-  add_foreign_key "formalities_documents", "documents"
+  add_foreign_key "formalities_documents", "transfer_documents"
   add_foreign_key "formalities_documents", "formalities_masters"
   add_foreign_key "joint_plans", "users"
   add_foreign_key "notifications", "users"

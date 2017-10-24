@@ -1,19 +1,19 @@
-class AttachmentsController < ApplicationController
+class TransferAttachmentsController < ApplicationController
   before_action :set_user
-  before_action :set_attachment, only: [:edit,:update,:download]
+  before_action :set_transfer_attachment, only: [:edit,:update,:download]
   before_action :set_formalities_master, only: [:new,:edit]
   before_filter :authenticate_user!
 
   def new
-    @attachment = Attachment.new
+    @transfer_attachment = TransferAttachment.new
     #Aqui se mostraran documentos dependiendo del trámite hay que pasar el parámetro del trámite 
-    @documents = FormalitiesMaster.find_by(id: params[:tramite]).documents
+    @transfer_documents = FormalitiesMaster.find_by(id: params[:tramite]).transfer_documents
     @formalities_master = FormalitiesMaster.find_by(id: params[:tramite])    
-    @document = Document.new
+    @trasfer_document = TransferDocument.new
   end
 
   def index
-    @attachments = Attachment.all
+    @attachments = TransferAttachment.all
   end
 
   def show
@@ -26,10 +26,10 @@ class AttachmentsController < ApplicationController
 
   def create_inform
 
-    a = params[:attachment]
-    @attachment = Attachment.new(inform_params)
+    a = params[:transfer_attachment]
+    @transfer_attachment = TransferAttachment.new(inform_params)
 
-    if @attachment.save
+    if @transfer_attachment.save
       redirect_to informs_joint_plans_path
     end
 
@@ -41,7 +41,7 @@ class AttachmentsController < ApplicationController
     uploads = params[:tramite][:docs_uploaded].to_i
     docsToUpload= params[:tramite][:docs].to_i
     #a = params[:attachments]
-    a = params.to_unsafe_h.slice(:attachments)
+    a = params.to_unsafe_h.slice(:transfer_attachments)
     if (docsToUpload != uploads )
       a.each do |attachment|
         if attachment[1] != nil
@@ -50,9 +50,9 @@ class AttachmentsController < ApplicationController
           attach.each do |doc|
             if doc[1][:file] != nil
                 uploads += 1
-                @attachment = current_user.attachments.new(attachment_params(doc[1]))
-                @attachment.save
-              if doc[1][:document_id] == '16' || doc[1][:document_id] == '17'
+                @transfer_attachment = current_user.attachments.new(attachment_params(doc[1]))
+                @transfer_attachment.save
+              if doc[1][:transfer_document_id] == '16' || doc[1][:transfer_document_id] == '17'
                 inform = true
               end
             end
@@ -62,7 +62,7 @@ class AttachmentsController < ApplicationController
     end  
 
     if (docsToUpload != uploads)
-      if @attachment.save && !inform
+      if @transfer_attachment.save && !inform
         instance =FormalitiesMaster.find_by(id: params[:tramite][:id]).table_manager.classify.constantize
         if (instance.where('process_type = ? and user_id =?',params[:tramite][:id],current_user.id).empty?)
          #if (instance.find_by(user_id: current_user.id,process_type: params[:tramite][:id]).nil?)
@@ -212,17 +212,17 @@ class AttachmentsController < ApplicationController
   end
 
   def update
-    doc = params[:attachment]
-    if doc[:document_id] != nil
+    doc = params[:transfer_attachment]
+    if doc[:transfer_document_id] != nil
         if doc[:file] != nil
             respond_to do |format|
-              if @attachment.update(attachment_params(doc))
-                format.html { redirect_to new_attachment_path(:tramite => params[:tramite][:id]) , 
+              if @transfer_attachment.update(transfer_attachment_params(doc))
+                format.html { redirect_to new_transfer_attachment_path(:tramite => params[:tramite][:id]) , 
                 notice: 'El Recaudo se Actualizo Correctamente.' }
-                format.json { render :show, status: :ok, location: @attachment }
+                format.json { render :show, status: :ok, location: @transfer_attachment }
               else
                 format.html { render :edit }
-                format.json { render json: @attachment.errors, status: :unprocessable_entity }
+                format.json { render json: @transfer_attachment.errors, status: :unprocessable_entity }
               end
             end
         end
@@ -233,7 +233,7 @@ class AttachmentsController < ApplicationController
     
         file_origin = Rails.root.to_s+'/public'
         @user = User.find(params[:user_id])
-        filename = @attachment.document.name+'_'+@user.first_name.capitalize+'_'+
+        filename = @transfer_attachment.transfer_document.name+'_'+@user.first_name.capitalize+'_'+
         @user.middle_name.capitalize+'_'+@user.last_name.capitalize+'.zip'
         file = Tempfile.new(filename)
     
@@ -241,7 +241,7 @@ class AttachmentsController < ApplicationController
           Zip::OutputStream.open(file) { |zos| }
           #Añadiendo archivos al Zip
           Zip::File.open(file.path, Zip::File::CREATE) do |zipfile|
-              zipfile.add(@attachment.file_file_name, file_origin + @attachment.file.url(:original, false))
+              zipfile.add(@transfer_attachment.file_file_name, file_origin + @transfer_attachment.file.url(:original, false))
           end
           
           zip_data = File.read(file.path)
@@ -260,8 +260,8 @@ class AttachmentsController < ApplicationController
       @user = current_user
     end
     
-    def set_attachment
-      @attachment = Attachment.find(params[:id])
+    def set_transfer_attachment
+      @transfer_attachment = TransferAttachment.find(params[:id])
     end
 
     def set_formalities_master
@@ -272,8 +272,8 @@ class AttachmentsController < ApplicationController
     #  document.permit(:document_id,:file)
     #end
 
-    def attachment_params (document)
+    def transfer_attachment_params (transfer_document)
       
-          ActionController::Parameters.new(document).permit(:document_id,:file)
+          ActionController::Parameters.new(transfer_document).permit(:transfer_document_id,:file)
     end
 end

@@ -242,7 +242,7 @@ User.create!([
 #  {user_id: 28, role_id: 2}
 #])
 =end
-Document.create!([
+TransferDocument.create!([
   {name: "Solicitud del Beneficiario", status: nil},
   {name: "Fotocopia de la Cedula de identidad", status: nil},
   {name: "Fotocopia del RIF", status: nil},
@@ -278,12 +278,12 @@ FormalitiesMaster.create!([
   {name: "Plan Conjunto", description: "Se entiende por Plan Conjunto a la combinación secuencial de un año sabático y una beca sueldo en la que el componente de Año Sabático queda incluido como parte del plan de formación al grado académico correspondiente y goza de todos los beneficios y soporta los deberes que se le otorgan al Becario.", table_manager: "JointPlan", isactive: false},
   {name: "Cambio de Dedicacion", description: "Se entiende por Cambio de Dedicación Temporal, al proceso mediante el cual, los miembros del personal Docente y de Investigación, por razones justificadas, a juicio del Consejo de Facultad, solicitan ante su Unidad Académica de adscripción ser clasificados en una dedicación distinta a la que poseen de manera Temporal, las cuales podrán ser solicitadas por", table_manager: "ProfessorsTransfer", isactive: true}
 ])
-JointPlan.create!([
-  {name: "Plan Conjunto", user_id: 3, status: 1, created: nil},
-  {name: "Plan Conjunto", user_id: 4, status: 1, created: nil},
-  {name: "Plan Conjunto", user_id: 8, status: nil, created: nil},
-  {name: "Plan Conjunto", user_id: 2, status: nil, created: nil}
-])
+#JointPlan.create!([
+#  {name: "Plan Conjunto", user_id: 3, status: 1, created: nil},
+#  {name: "Plan Conjunto", user_id: 4, status: 1, created: nil},
+#  {name: "Plan Conjunto", user_id: 8, status: nil, created: nil},
+#  {name: "Plan Conjunto", user_id: 2, status: nil, created: nil}
+#])
 
 Reference.create!([
   {name: "region", description: nil},
@@ -394,34 +394,34 @@ Faculty::HABTM_Employees.create!([
 ])
 =end
 FormalitiesDocument.create!([
-  {formalities_master_id: 1, document_id: 19},
-  {formalities_master_id: 1, document_id: 12},
-  {formalities_master_id: 1, document_id: 22},
-  {formalities_master_id: 1, document_id: 21},
-  {formalities_master_id: 1, document_id: 4},
-  {formalities_master_id: 1, document_id: 20},
-  {formalities_master_id: 2, document_id: 1},
-  {formalities_master_id: 2, document_id: 2},
-  {formalities_master_id: 2, document_id: 3},
-  {formalities_master_id: 2, document_id: 4},
-  {formalities_master_id: 2, document_id: 5},
-  {formalities_master_id: 2, document_id: 6},
-  {formalities_master_id: 2, document_id: 7},
-  {formalities_master_id: 2, document_id: 8},
-  {formalities_master_id: 2, document_id: 9},
-  {formalities_master_id: 2, document_id: 10},
-  {formalities_master_id: 2, document_id: 11},
-  {formalities_master_id: 2, document_id: 12},
-  {formalities_master_id: 2, document_id: 9},
-  {formalities_master_id: 2, document_id: 13},
-  {formalities_master_id: 3, document_id: 2},
-  {formalities_master_id: 3, document_id: 3},
-  {formalities_master_id: 3, document_id: 22},
-  {formalities_master_id: 3, document_id: 4},
-  {formalities_master_id: 3, document_id: 25},
-  {formalities_master_id: 3, document_id: 26},
-  {formalities_master_id: 3, document_id: 27},
-  {formalities_master_id: 3, document_id: 29}
+  {formalities_master_id: 1, transfer_document_id: 19},
+  {formalities_master_id: 1, transfer_document_id: 12},
+  {formalities_master_id: 1, transfer_document_id: 22},
+  {formalities_master_id: 1, transfer_document_id: 21},
+  {formalities_master_id: 1, transfer_document_id: 4},
+  {formalities_master_id: 1, transfer_document_id: 20},
+  {formalities_master_id: 2, transfer_document_id: 1},
+  {formalities_master_id: 2, transfer_document_id: 2},
+  {formalities_master_id: 2, transfer_document_id: 3},
+  {formalities_master_id: 2, transfer_document_id: 4},
+  {formalities_master_id: 2, transfer_document_id: 5},
+  {formalities_master_id: 2, transfer_document_id: 6},
+  {formalities_master_id: 2, transfer_document_id: 7},
+  {formalities_master_id: 2, transfer_document_id: 8},
+  {formalities_master_id: 2, transfer_document_id: 9},
+  {formalities_master_id: 2, transfer_document_id: 10},
+  {formalities_master_id: 2, transfer_document_id: 11},
+  {formalities_master_id: 2, transfer_document_id: 12},
+  {formalities_master_id: 2, transfer_document_id: 9},
+  {formalities_master_id: 2, transfer_document_id: 13},
+  {formalities_master_id: 3, transfer_document_id: 2},
+  {formalities_master_id: 3, transfer_document_id: 3},
+  {formalities_master_id: 3, transfer_document_id: 22},
+  {formalities_master_id: 3, transfer_document_id: 4},
+  {formalities_master_id: 3, transfer_document_id: 25},
+  {formalities_master_id: 3, transfer_document_id: 26},
+  {formalities_master_id: 3, transfer_document_id: 27},
+  {formalities_master_id: 3, transfer_document_id: 29}
 ])
 process=FormalitiesMaster.where('id = ?',1).first
 professortransfer = ProfessorsTransfer.new(:id => 132,
@@ -463,9 +463,9 @@ ProfessorsTransfer.create!([
 ])
 =end
 process=ProfessorsTransfer.where('id = ?',115).first
-attachment = Attachment.new(:id => 209,
+attachment = TransferAttachment.new(:id => 209,
 :user_id => 8,
-:document_id => 23,
+:transfer_document_id => 23,
 :file_file_name => "traslado_aprobacion_temp20171004-4608-1w1z7mm.pdf",
 :file_content_type => "application/pdf",
 :file_file_size => 104717, 
@@ -474,9 +474,9 @@ attachment = Attachment.new(:id => 209,
 attachment.save!
 
 process=ProfessorsTransfer.where('id = ?',132).first
-attachment = Attachment.new(:id => 227,
+attachment = TransferAttachment.new(:id => 227,
 :user_id => 15,
-:document_id => 23,
+:transfer_document_id => 23,
 :file_file_name => "traslado_aprobacion_temp20171020-28749-1pe2jpu.pdf",
 :file_content_type => "application/pdf",
 :file_file_size => 104826, 
@@ -484,49 +484,49 @@ attachment = Attachment.new(:id => 227,
 :process_id => process)
 attachment.save!
 
-Attachment.create!([
-  {id: 1,user_id: 2, document_id: 1, link: nil, file_file_name: "Wallpaper-3D-2013-.jpg", file_content_type: "image/jpeg", file_file_size: 532832, file_updated_at: "2017-02-12 22:54:14", process_id: nil},
-  {id: 199,user_id: 8, document_id: 2, link: nil, file_file_name: "JesusDeAbreu.jpg", file_content_type: "image/jpeg", file_file_size: 33215, file_updated_at: "2017-09-27 03:49:39", process_id: nil},
-  {id: 200,user_id: 8, document_id: 3, link: nil, file_file_name: "JesusDeAbreu2.jpg", file_content_type: "image/jpeg", file_file_size: 14756, file_updated_at: "2017-09-27 03:49:40", process_id: nil},
-  {id: 151,user_id: 8, document_id: 4, link: nil, file_file_name: "3D-Wallpaper-5.jpg", file_content_type: "image/jpeg", file_file_size: 295162, file_updated_at: "2017-02-28 21:01:15", process_id: nil},
-  {id: 155,user_id: 8, document_id: 12, link: nil, file_file_name: "certificadoRubyOnRails2.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-02-28 23:33:18", process_id: nil},
-  {id: 162,user_id: 8, document_id: 19, link: nil, file_file_name: "certificadoRubyOnRails3.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-01 03:24:10", process_id: nil},
-  {id: 154,user_id: 8, document_id: 20, link: nil, file_file_name: "3D-Wallpaper-52.jpg", file_content_type: "image/jpeg", file_file_size: 295162, file_updated_at: "2017-02-28 23:15:41", process_id: nil},
-  {id: 163,user_id: 8, document_id: 6, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-07 04:39:41", process_id: nil},
-  {id: 149,user_id: 2, document_id: 19, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-02-25 16:18:35", process_id: nil},
-  {id: 183,user_id: 4, document_id: 4, link: nil, file_file_name: "3D-Cigarette-Wallpaper_VeqSC7f.jpg", file_content_type: "image/jpeg", file_file_size: 130334, file_updated_at: "2017-03-14 01:52:57", process_id: nil},
-  {id: 184,user_id: 4, document_id: 12, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-14 01:52:58", process_id: nil},
-  {id: 150,user_id: 8, document_id: 21, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-02-27 18:44:00", process_id: nil},
-  {id: 185,user_id: 4, document_id: 19, link: nil, file_file_name: "3D-Wallpaper-5.jpg", file_content_type: "image/jpeg", file_file_size: 295162, file_updated_at: "2017-03-14 01:52:58", process_id: nil},
-  {id: 186,user_id: 4, document_id: 20, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-14 01:56:13", process_id: nil},
-  {id: 187,user_id: 4, document_id: 21, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-14 01:56:14", process_id: nil},
-  {id: 188,user_id: 4, document_id: 22, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-03-14 01:56:14", process_id: nil},
-  {id: 189,user_id: 3, document_id: 12, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
-  {id: 190,user_id: 3, document_id: 19, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
-  {id: 191,user_id: 3, document_id: 20, link: nil, file_file_name: "3d-wallpaperfire-heart-3d-wallpaper---3d-hd-wallpaper-9hunqb6m_oOkydiq.jpg", file_content_type: "image/jpeg", file_file_size: 2097152, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
-  {id: 192,user_id: 3, document_id: 21, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
-  {id: 193,user_id: 3, document_id: 22, link: nil, file_file_name: "Wallpaper-3D-2013-.jpg", file_content_type: "image/jpeg", file_file_size: 532832, file_updated_at: "2017-03-24 18:56:12", process_id: nil},
-  {id: 152,user_id: 3, document_id: 4, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-02-27 21:53:57", process_id: nil},
-  {id: 194,user_id: 2, document_id: 12, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-24 19:06:31", process_id: nil},
-  {id: 195,user_id: 2, document_id: 4, link: nil, file_file_name: "3D-Wallpaper-of-Tiger_60ipnX3.jpg", file_content_type: "image/jpeg", file_file_size: 389486, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
-  {id: 196,user_id: 2, document_id: 20, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
-  {id: 197,user_id: 2, document_id: 21, link: nil, file_file_name: "UCd.jpg", file_content_type: "image/jpeg", file_file_size: 120507, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
-  {id: 198,user_id: 2, document_id: 22, link: nil, file_file_name: "hexagons-3d-desktop-wallpaper-hd_VUiBHpV.jpg", file_content_type: "image/jpeg", file_file_size: 128475, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
-  {id: 153,user_id: 8, document_id: 22, link: nil, file_file_name: "pagocarne.pdf", file_content_type: "application/pdf", file_file_size: 63742, file_updated_at: "2017-09-03 23:12:40", process_id: nil},
+TransferAttachment.create!([
+  {id: 1,user_id: 2, transfer_document_id: 1, link: nil, file_file_name: "Wallpaper-3D-2013-.jpg", file_content_type: "image/jpeg", file_file_size: 532832, file_updated_at: "2017-02-12 22:54:14", process_id: nil},
+  {id: 199,user_id: 8, transfer_document_id: 2, link: nil, file_file_name: "JesusDeAbreu.jpg", file_content_type: "image/jpeg", file_file_size: 33215, file_updated_at: "2017-09-27 03:49:39", process_id: nil},
+  {id: 200,user_id: 8, transfer_document_id: 3, link: nil, file_file_name: "JesusDeAbreu2.jpg", file_content_type: "image/jpeg", file_file_size: 14756, file_updated_at: "2017-09-27 03:49:40", process_id: nil},
+  {id: 151,user_id: 8, transfer_document_id: 4, link: nil, file_file_name: "3D-Wallpaper-5.jpg", file_content_type: "image/jpeg", file_file_size: 295162, file_updated_at: "2017-02-28 21:01:15", process_id: nil},
+  {id: 155,user_id: 8, transfer_document_id: 12, link: nil, file_file_name: "certificadoRubyOnRails2.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-02-28 23:33:18", process_id: nil},
+  {id: 162,user_id: 8, transfer_document_id: 19, link: nil, file_file_name: "certificadoRubyOnRails3.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-01 03:24:10", process_id: nil},
+  {id: 154,user_id: 8, transfer_document_id: 20, link: nil, file_file_name: "3D-Wallpaper-52.jpg", file_content_type: "image/jpeg", file_file_size: 295162, file_updated_at: "2017-02-28 23:15:41", process_id: nil},
+  {id: 163,user_id: 8, transfer_document_id: 6, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-07 04:39:41", process_id: nil},
+  {id: 149,user_id: 2, transfer_document_id: 19, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-02-25 16:18:35", process_id: nil},
+  {id: 183,user_id: 4, transfer_document_id: 4, link: nil, file_file_name: "3D-Cigarette-Wallpaper_VeqSC7f.jpg", file_content_type: "image/jpeg", file_file_size: 130334, file_updated_at: "2017-03-14 01:52:57", process_id: nil},
+  {id: 184,user_id: 4, transfer_document_id: 12, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-14 01:52:58", process_id: nil},
+  {id: 150,user_id: 8, transfer_document_id: 21, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-02-27 18:44:00", process_id: nil},
+  {id: 185,user_id: 4, transfer_document_id: 19, link: nil, file_file_name: "3D-Wallpaper-5.jpg", file_content_type: "image/jpeg", file_file_size: 295162, file_updated_at: "2017-03-14 01:52:58", process_id: nil},
+  {id: 186,user_id: 4, transfer_document_id: 20, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-14 01:56:13", process_id: nil},
+  {id: 187,user_id: 4, transfer_document_id: 21, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-14 01:56:14", process_id: nil},
+  {id: 188,user_id: 4, transfer_document_id: 22, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-03-14 01:56:14", process_id: nil},
+  {id: 189,user_id: 3, transfer_document_id: 12, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
+  {id: 190,user_id: 3, transfer_document_id: 19, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
+  {id: 191,user_id: 3, transfer_document_id: 20, link: nil, file_file_name: "3d-wallpaperfire-heart-3d-wallpaper---3d-hd-wallpaper-9hunqb6m_oOkydiq.jpg", file_content_type: "image/jpeg", file_file_size: 2097152, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
+  {id: 192,user_id: 3, transfer_document_id: 21, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-03-24 18:56:11", process_id: nil},
+  {id: 193,user_id: 3, transfer_document_id: 22, link: nil, file_file_name: "Wallpaper-3D-2013-.jpg", file_content_type: "image/jpeg", file_file_size: 532832, file_updated_at: "2017-03-24 18:56:12", process_id: nil},
+  {id: 152,user_id: 3, transfer_document_id: 4, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-02-27 21:53:57", process_id: nil},
+  {id: 194,user_id: 2, transfer_document_id: 12, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-03-24 19:06:31", process_id: nil},
+  {id: 195,user_id: 2, transfer_document_id: 4, link: nil, file_file_name: "3D-Wallpaper-of-Tiger_60ipnX3.jpg", file_content_type: "image/jpeg", file_file_size: 389486, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
+  {id: 196,user_id: 2, transfer_document_id: 20, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
+  {id: 197,user_id: 2, transfer_document_id: 21, link: nil, file_file_name: "UCd.jpg", file_content_type: "image/jpeg", file_file_size: 120507, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
+  {id: 198,user_id: 2, transfer_document_id: 22, link: nil, file_file_name: "hexagons-3d-desktop-wallpaper-hd_VUiBHpV.jpg", file_content_type: "image/jpeg", file_file_size: 128475, file_updated_at: "2017-03-24 19:08:26", process_id: nil},
+  {id: 153,user_id: 8, transfer_document_id: 22, link: nil, file_file_name: "pagocarne.pdf", file_content_type: "application/pdf", file_file_size: 63742, file_updated_at: "2017-09-03 23:12:40", process_id: nil},
   #{id: 209,user_id: 8, document_id: 23, link: nil, file_file_name: "traslado_aprobacion_temp20171004-4608-1w1z7mm.pdf", file_content_type: "application/pdf", file_file_size: 104717, file_updated_at: "2017-10-05 02:35:33", process_id: 115},
-  {id: 214,user_id: 15, document_id: 12, link: nil, file_file_name: "3D-Cigarette-Wallpaper_VeqSC7f.jpg", file_content_type: "image/jpeg", file_file_size: 130334, file_updated_at: "2017-10-19 17:46:01", process_id: nil},
-  {id: 215,user_id: 15, document_id: 20, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-10-19 17:46:03", process_id: nil},
-  {id: 216,user_id: 15, document_id: 19, link: nil, file_file_name: "3D-Wallpaper-of-Tiger_60ipnX3.jpg", file_content_type: "image/jpeg", file_file_size: 389486, file_updated_at: "2017-10-19 18:37:12", process_id: nil},
-  {id: 224,user_id: 15, document_id: 21, link: nil, file_file_name: "controllers_complete_(1).png", file_content_type: "image/png", file_file_size: 121436, file_updated_at: "2017-10-19 19:58:26", process_id: nil},
-  {id: 213,user_id: 15, document_id: 4, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-10-20 01:34:19", process_id: nil},
-  {id: 226,user_id: 15, document_id: 26, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-10-20 02:05:27", process_id: nil},
-  {id: 225,user_id: 15, document_id: 22, link: nil, file_file_name: "3D-Cigarette-Wallpaper_VeqSC7f.jpg", file_content_type: "image/jpeg", file_file_size: 130334, file_updated_at: "2017-10-20 02:36:44", process_id: nil},
+  {id: 214,user_id: 15, transfer_document_id: 12, link: nil, file_file_name: "3D-Cigarette-Wallpaper_VeqSC7f.jpg", file_content_type: "image/jpeg", file_file_size: 130334, file_updated_at: "2017-10-19 17:46:01", process_id: nil},
+  {id: 215,user_id: 15, transfer_document_id: 20, link: nil, file_file_name: "3d-tv-14723_sqhNJej.jpg", file_content_type: "image/jpeg", file_file_size: 501358, file_updated_at: "2017-10-19 17:46:03", process_id: nil},
+  {id: 216,user_id: 15, transfer_document_id: 19, link: nil, file_file_name: "3D-Wallpaper-of-Tiger_60ipnX3.jpg", file_content_type: "image/jpeg", file_file_size: 389486, file_updated_at: "2017-10-19 18:37:12", process_id: nil},
+  {id: 224,user_id: 15, transfer_document_id: 21, link: nil, file_file_name: "controllers_complete_(1).png", file_content_type: "image/png", file_file_size: 121436, file_updated_at: "2017-10-19 19:58:26", process_id: nil},
+  {id: 213,user_id: 15, transfer_document_id: 4, link: nil, file_file_name: "download.jpg", file_content_type: "image/jpeg", file_file_size: 5086, file_updated_at: "2017-10-20 01:34:19", process_id: nil},
+  {id: 226,user_id: 15, transfer_document_id: 26, link: nil, file_file_name: "certificadoRubyOnRails.pdf", file_content_type: "application/pdf", file_file_size: 1153634, file_updated_at: "2017-10-20 02:05:27", process_id: nil},
+  {id: 225,user_id: 15, transfer_document_id: 22, link: nil, file_file_name: "3D-Cigarette-Wallpaper_VeqSC7f.jpg", file_content_type: "image/jpeg", file_file_size: 130334, file_updated_at: "2017-10-20 02:36:44", process_id: nil},
   #{id: 227,user_id: 15, document_id: 23, link: nil, file_file_name: "traslado_aprobacion_temp20171020-28749-1pe2jpu.pdf", file_content_type: "application/pdf", file_file_size: 104826, file_updated_at: "2017-10-20 06:28:14", process_id: 132},
-  {id: 229,user_id: 15, document_id: 3, link: nil, file_file_name: "controllers_complete.png", file_content_type: "image/png", file_file_size: 121436, file_updated_at: "2017-10-20 23:28:35", process_id: nil},
-  {id: 230,user_id: 15, document_id: 25, link: nil, file_file_name: "female_user.png", file_content_type: "image/png", file_file_size: 1043, file_updated_at: "2017-10-20 23:28:36", process_id: nil},
-  {id: 231,user_id: 15, document_id: 27, link: nil, file_file_name: "Etiqueta_Anaquel.pdf", file_content_type: "application/pdf", file_file_size: 12909, file_updated_at: "2017-10-20 23:28:36", process_id: nil},
-  {id: 232,user_id: 15, document_id: 29, link: nil, file_file_name: "UCd.jpg", file_content_type: "image/jpeg", file_file_size: 120507, file_updated_at: "2017-10-20 23:28:36", process_id: nil},
-  {id: 228,user_id: 15, document_id: 2, link: nil, file_file_name: "admin_1.png", file_content_type: "image/png", file_file_size: 57303, file_updated_at: "2017-10-20 23:41:23", process_id: nil}
+  {id: 229,user_id: 15, transfer_document_id: 3, link: nil, file_file_name: "controllers_complete.png", file_content_type: "image/png", file_file_size: 121436, file_updated_at: "2017-10-20 23:28:35", process_id: nil},
+  {id: 230,user_id: 15, transfer_document_id: 25, link: nil, file_file_name: "female_user.png", file_content_type: "image/png", file_file_size: 1043, file_updated_at: "2017-10-20 23:28:36", process_id: nil},
+  {id: 231,user_id: 15, transfer_document_id: 27, link: nil, file_file_name: "Etiqueta_Anaquel.pdf", file_content_type: "application/pdf", file_file_size: 12909, file_updated_at: "2017-10-20 23:28:36", process_id: nil},
+  {id: 232,user_id: 15, transfer_document_id: 29, link: nil, file_file_name: "UCd.jpg", file_content_type: "image/jpeg", file_file_size: 120507, file_updated_at: "2017-10-20 23:28:36", process_id: nil},
+  {id: 228,user_id: 15, transfer_document_id: 2, link: nil, file_file_name: "admin_1.png", file_content_type: "image/png", file_file_size: 57303, file_updated_at: "2017-10-20 23:41:23", process_id: nil}
 ])
 RequestWorkflow.create!([
   {id: 24,name: "Workflow Traslado entre Universidades", description: "Flujo principal del trámite de Traslado entre Universidades", professors_transfer_id: 115, is_active: true, is_completed: false},

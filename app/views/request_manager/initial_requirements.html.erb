@@ -16,13 +16,13 @@
           </tr>
         </thead>
         <tbody>
-            <% @attachments.each do |attch|%>
+            <% @transfer_attachments.each do |attch|%>
               <tr>
-                <td><%= attch.document.name%></td>
+                <td><%= attch.transfer_document.name%></td>
                 <td><%= attch.created_at.strftime("%d-%m-%Y") %></td>
                 <td> 
                   <span class="btn btn-info btn-md list ">
-                  <%= link_to download_attachments_path(id: attch.id,user_id: @professors_transfer.user.id), {method: "download"}  do %>
+                  <%= link_to download_transfer_attachments_path(id: attch.id,user_id: @professors_transfer.user.id), {method: "download"}  do %>
                     <%= attch.file_file_name %> 
                     <i class="glyphicon glyphicon-save-file"></i> 
                   <% end %>

@@ -1,6 +1,6 @@
-class AddAttachmentfield < ActiveRecord::Migration
+class AddTransferAttachmentfield < ActiveRecord::Migration
   def change
 
-    add_attachment :attachments,:file
+    add_transfer_attachment :transfer_attachments,:file
   end
 end

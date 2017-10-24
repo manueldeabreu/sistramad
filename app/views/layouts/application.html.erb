@@ -149,37 +149,8 @@
 
 
             <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> <span>Plan Conjunto</span>
-                <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-              </a>
-              <ul class="treeview-menu">
-                <% if JointPlan.where(user_id: current_user.id).empty? %>
-                    <li><%= link_to new_attachment_path(:tramite => FormalitiesMaster.find(2).name),method: :get do%>
-                          <i class="fa fa-circle"></i>
-                          Nuevo Plan Conjunto
-                      <% end %></li>
-                <% end %>
-                <li><%= link_to status_joint_plans_path,method: :get do%>
-                    <i class="fa fa-circle"></i>
-                    Estatus de Plan Conjunto
-                <% end %>
-                </li>
-                <li><%= link_to informs_joint_plans_path,method: :get do%>
-                      <i class="fa fa-circle"></i>
-                      Subir Informe
-                  <% end %>
-                </li>
-
-              </ul>
+              <a href="#"><i class="fa fa-circle-o"></i> <span>Plan Conjunto</span></a>
             </li>
-            <% if current_user.has_role? :decano %>
-                <li><%= link_to joint_plans_path do%>
-                    <i class="fa fa-circle-o"></i>
-                    Ver Solicitudes de Plan Conjunto
-                <% end %></li>
-            <% end %>
 
           </ul>
           <!-- /.sidebar-menu -->

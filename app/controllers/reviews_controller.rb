@@ -18,9 +18,9 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    docs = FormalitiesMaster.find_by(name: 'Traslados').documents
+    docs = FormalitiesMaster.find_by(name: 'Traslados').transfer_documents
     u_id = @professors_transfer.user_id
-    @attachments = User.find_by(id: u_id).attachments.where(:document_id => docs)
+    @transfer_attachments = User.find_by(id: u_id).transfer_attachments.where(:transfer_document_id => docs)
     @step = WorkflowStep.find(params[:workflow_step_id])
     steps = @professors_transfer.workflow_steps
     @preview = Review.all.where(:workflow_step_id => steps)
@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
 
    # GET /reviews/new
    def new_aval_and_budget_revision
-    docs = FormalitiesMaster.find_by(name: 'Traslados').documents
+    docs = FormalitiesMaster.find_by(name: 'Traslados').transfer_documents
     u_id = @professors_transfer.user_id
     @step = WorkflowStep.find(params[:workflow_step_id])
     steps = @professors_transfer.workflow_steps

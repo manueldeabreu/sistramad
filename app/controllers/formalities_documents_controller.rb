@@ -69,6 +69,6 @@ class FormalitiesDocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def formalities_document_params
-      params.require(:formalities_document).permit(:formalities_master_id, :document_id)
+      params.require(:formalities_document).permit(:formalities_master_id, :transfer_document_id)
     end
 end

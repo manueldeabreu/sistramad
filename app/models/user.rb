@@ -14,9 +14,9 @@ class User < ActiveRecord::Base
   has_one :employee, inverse_of: :user
   has_one :joint_plan, inverse_of: :user
   has_many :professors_transfer, inverse_of: :user
-  has_many :attachments
+  has_many :transfer_attachments
   has_many :reviews
-  accepts_nested_attributes_for :attachments
+  accepts_nested_attributes_for :transfer_attachments
 
   mount_uploader :avatar, AvatarUploader
   crop_uploaded :avatar

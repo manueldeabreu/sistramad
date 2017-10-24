@@ -2,9 +2,9 @@
 
 Los formatos permitidos son: .pdf, .doc, .jpeg, .jpj, .png, .docx, .odt</a>
 <ul class="nav nav-tabs" role="tablist">
- <li class="active"><%= link_to t('list_attachment'), "#" %></li>
+ <li class="active"><%= link_to t('list_transfer_attachment'), "#" %></li>
 </ul>
-<%= simple_form_for (@attachment), :html => {:multipart => true, :class => "new_attachment"},
+<%= simple_form_for (@transfer_attachment), :html => {:multipart => true, :class => "new_transfer_attachment"},
                     wrapper: :horizontal_file_input_sistramad,
                     wrapper_mappings: {
                         file: :horizontal_file_input_sistramad
@@ -19,16 +19,16 @@ Los formatos permitidos son: .pdf, .doc, .jpeg, .jpj, .png, .docx, .odt</a>
          <% docs = 0 %>
          <% docs_uploaded = 0 %> 
         <tbody>
-        <% @documents.each do |document| %>
+        <% @transfer_documents.each do |transfer_document| %>
             <tr>
-              <%= fields_for 'attachments[]', document do |x| %>
+              <%= fields_for 'transfer_attachments[]', transfer_document do |x| %>
                 <% docs += 1 %>
-                <td><b><li><%= document.name %></li></b>
+                <td><b><li><%= transfer_document.name %></li></b>
                   <div class="field">
-                    <div class="attachments">
+                    <div class="transfer_attachments">
                       <% found = false %>
-                      <% current_user.attachments.each do |recaudos| %>
-                        <%if recaudos.document_id == document.id %>
+                      <% current_user.transfer_attachments.each do |recaudos| %>
+                        <%if recaudos.transfer_document_id == transfer_document.id %>
                           <% found = true %>
                           <% docs_uploaded += 1 %>
                         <% end %>
@@ -39,14 +39,14 @@ Los formatos permitidos son: .pdf, .doc, .jpeg, .jpj, .png, .docx, .odt</a>
                            "data-buttonText"=>"Seleccionar Archivo",
                            "data-iconName"=>"glyphicon glyphicon-paperclip",
                            "data-buttonBefore"=>"true"%>
-                          <%= x.hidden_field :document_id, :value => document.id%>
+                          <%= x.hidden_field :transfer_document_id, :value => transfer_document.id%>
                         </div>
                       <% else%>
                         <div class="btn-toolbar">
                           <div class="btn-group btn-group-xs">
                             <p>Este Recaudo se encuentra cargado, ¿Desea actualizar este Recaudo?</p>
-                            <% @attachment = Attachment.find_by(user_id: current_user.id,document_id: document.id)%>
-                            <%= link_to 'Actualizar Recaudo', edit_attachment_path(@attachment,:tramite => @formalities_master.id), class: 'btn btn-primary list' %>
+                            <% @transfer_attachment = TransferAttachment.find_by(user_id: current_user.id,transfer_document_id: transfer_document.id)%>
+                            <%= link_to 'Actualizar Recaudo', edit_transferattachment_path(@transfer_attachment,:tramite => @formalities_master.id), class: 'btn btn-primary list' %>
                           </div>
                         </div>
                       <% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Documents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transfer_documents.each do |transfer_document| %>
+      <tr>
+        <td><%= transfer_document.name %></td>
+        <td><%= transfer_document.status %></td>
+        <td><%= link_to 'Show', transfer_document %></td>
+        <td><%= link_to 'Edit', edit_transfer_document_path(transfer_document) %></td>
+        <td><%= link_to 'Destroy', transfer_document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Document', new_transfer_document_path %>

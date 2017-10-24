@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   
-    #resources :reviews
     resources :formalities_documents
     resources :formalities_masters
-    #resources :professors_transfers
-    resources :documents
-    #resources :reports
+    resources :transfer_documents
     resources :university_degrees
     resources :universities
     resources :faculties
@@ -72,7 +69,7 @@ Rails.application.routes.draw do
 
     resources :reports
 
-    resources :attachments do
+    resources :transfer_attachments do
       collection do
         post :download
         post :create_inform

@@ -113,8 +113,8 @@ class ProfessorsTransfersController < ApplicationController
 
   def download
 
-    documentos = FormalitiesDocument.select([:document_id]).where(formalities_master_id: 1)  
-    @submissions = Attachment.where(user_id: params[:user_id],document_id: documentos)
+    documentos = FormalitiesDocument.select([:transfer_document_id]).where(formalities_master_id: 1)  
+    @submissions = TransferAttachment.where(user_id: params[:user_id],transfer_document_id: documentos)
 
     file_origin = Rails.root.to_s+'/public'
     @user = User.find(params[:user_id])

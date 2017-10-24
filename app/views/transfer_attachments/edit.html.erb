@@ -1,21 +1,21 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-info">
-      <div class="panel-heading center"><%= "Actualizar #{@attachment.document.name} de #{@attachment.user.first_name.capitalize} #{@attachment.user.last_name.capitalize}" %></div>
+      <div class="panel-heading center"><%= "Actualizar #{@transfer_attachment.document.name} de #{@transfer_attachment.user.first_name.capitalize} #{@transfer_attachment.user.last_name.capitalize}" %></div>
       <div class="panel-body">
-        <%= simple_form_for (@attachment), :html => {:multipart => true, :class => "new_attachment"},
+        <%= simple_form_for (@transfer_attachment), :html => {:multipart => true, :class => "new_transfer_attachment"},
                             wrapper: :horizontal_file_input_sistramad,
                             wrapper_mappings: {
                                 file: :horizontal_file_input_sistramad
                             } do |f| %>
             <%= f.error_notification %>
 
-            <% if @attachment.errors.any? %>
+            <% if @transfer_attachment.errors.any? %>
                 <div id="error_explanation">
-                  <h2><%= pluralize(@attachment.errors.count, "error") %> prohibited this user from being saved:</h2>
+                  <h2><%= pluralize(@transfer_attachment.errors.count, "error") %> prohibited this user from being saved:</h2>
 
                   <ul>
-                    <% @attachment.errors.full_messages.each do |message| %>
+                    <% @transfer_attachment.errors.full_messages.each do |message| %>
                         <li><%= message %></li>
                     <% end %>
                   </ul>
@@ -28,7 +28,7 @@
                            "data-buttonText"=>"Seleccionar Archivo",
                            "data-iconName"=>"glyphicon glyphicon-paperclip",
                            "data-buttonBefore"=>"true"%>
-                          <%= f.hidden_field :document_id, :value => @attachment.document_id%>
+                          <%= f.hidden_field :transfer_document_id, :value => @transfer_attachment.transfer_document_id%>
                         </div>
               </div>
             

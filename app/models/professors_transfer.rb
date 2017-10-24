@@ -13,7 +13,7 @@ class ProfessorsTransfer < ActiveRecord::Base
   belongs_to :type_2, :class_name => 'ReferenceList', :foreign_key => 'type_of_translate'
   belongs_to :process_type, :class_name => 'FormalitiesMaster', :foreign_key => 'process_type'
   accepts_nested_attributes_for :user
-  has_many :attachments
+  has_many :transfer_attachments
 
   aasm column: "status" do    
   	

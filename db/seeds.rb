@@ -242,7 +242,25 @@ user.add_role(:consejo_facultad)
 user.add_role(:admin)                 
 user.save!(:validate => false)
 
-user = User.new(:username => 'amatute',
+user = User.new( :id => 5,
+:username => 'lfagundez',
+:email => 'lfagundez@outlook.com',
+:first_name => 'Luis',
+:middle_name => '',
+:last_name => 'Fagundez',
+:genre => 'm',
+:identification_document => '18347734',
+:birthday => "23/09/1989".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456')
+user.add_role(:admin)
+user.add_role(:system_admin)
+user.add_role(:test)
+user.add_role(:docente)                
+user.save!(:validate => false)
+
+user = User.new(:id => 6,
+                :username => 'amatute',
                 :email => 'alexghoro@outlook.com',
                 :first_name => 'Alejandro',
                 :middle_name => '',
@@ -258,7 +276,8 @@ user.add_role(:test)
 user.add_role(:docente)                
 user.save!(:validate => false)
 
-user = User.new(:username => 'jceballos',
+user = User.new(:id => 7,
+                :username => 'jceballos',
                 :email => 'jonnyceballos@gmail.com',
                 :first_name => 'Jonny',
                 :middle_name => '',
@@ -274,7 +293,8 @@ user.add_role(:test)
 user.add_role(:docente)                
 user.save!(:validate => false)
 
-user = User.new(:username => 'repfac',
+user = User.new( :id => 9,
+        :username => 'repfac',
         :email => 'representantedefacultad@correo.com',
         :first_name => 'Representante de Facultad',
         :middle_name => '',
@@ -289,7 +309,8 @@ user.add_role(:representante_facultad)
 user.add_role(:admin)
 
 
-user = User.new(:username => 'jefe_departamento',
+user = User.new(:id => 10,
+        :username => 'jefe_departamento',
         :email => 'jefedepartamento@correo.com',
         :first_name => 'Jefe de Departamento',
         :middle_name => '',
@@ -303,7 +324,8 @@ user.save!
 user.add_role(:jefe_departamento)
 user.add_role(:admin)
 
-user = User.new(:username => 'dirdep',
+user = User.new(:id => 11,
+        :username => 'dirdep',
         :email => 'direcciondepartamento@correo.com',
         :first_name => 'Director de Departamento',
         :middle_name => '',
@@ -317,7 +339,8 @@ user.save!
 user.add_role(:director_departamento)
 user.add_role(:admin)
 
-user = User.new(:username => 'director_escuela',
+user = User.new(:id => 12,
+        :username => 'director_escuela',
         :email => 'directorescuela@correo.com',
         :first_name => 'Director Escuela',
         :middle_name => '',

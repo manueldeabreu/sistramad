@@ -2,7 +2,7 @@ class TransferAttachmentsController < ApplicationController
   before_action :set_user
   before_action :set_transfer_attachment, only: [:edit,:update,:download]
   before_action :set_formalities_master, only: [:new,:edit]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def new
     @transfer_attachment = TransferAttachment.new

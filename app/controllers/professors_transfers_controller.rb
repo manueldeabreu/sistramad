@@ -11,7 +11,7 @@ class ProfessorsTransfersController < ApplicationController
   before_action :get_selections_dedication, only: [:new,:edit]
   before_action :get_froms, only: [:edit,:get_selections,:get_froms,:get_to]
   before_action :get_to, only: [:edit,:get_selections,:get_froms,:get_to]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   require 'rubygems'
   require 'zip'
   require 'tempfile'

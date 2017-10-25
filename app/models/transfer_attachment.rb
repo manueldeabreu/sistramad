@@ -3,7 +3,6 @@ class TransferAttachment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :transfer_document
-  belongs_to :joint_plan
   belongs_to :professors_transfer
   belongs_to :process_id, :class_name => 'ProfessorsTransfer', :foreign_key => 'process_id'
   has_attached_file :file , :default_url => '/uploads'

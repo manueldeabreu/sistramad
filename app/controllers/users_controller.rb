@@ -20,11 +20,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-<<<<<<< HEAD
-=======
-
-    #@attachment = Attachment.new
->>>>>>> jesus_dev_final
   end
 
   # GET /users/1/edit
@@ -82,11 +77,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-<<<<<<< HEAD
-      format.html { redirect_to users_path, notice: 'El usuario fue eliminado exitosamente.' }
-=======
       format.html { redirect_to users_url, notice: 'Usuario fue eliminado Exitosamente!!.' }
->>>>>>> jesus_dev_final
       format.json { head :no_content }
     end
   end

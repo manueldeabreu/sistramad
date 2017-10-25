@@ -163,7 +163,7 @@
                     </li> 
                 <% end %> 
                 <% end %>   
-                <% if ((current_user.has_role? :decano) || (current_user.has_role? :Consejo_Departamento)|| (current_user.has_role? :Consejo_Escuela) || (current_user.has_role? :Consejo_Facultad) || (current_user.has_role? :departamento) || (current_user.has_role? :Consejo_Universitario))%>
+                <% if ((current_user.has_role? :decano) || (current_user.has_role? :consejo_departamento)|| (current_user.has_role? :consejo_escuela) || (current_user.has_role? :consejo_facultad) || (current_user.has_role? :departamento) || (current_user.has_role? :consejo_universitario))%>
                     <li><%= link_to professors_transfers_path do%>
                         <i class="fa fa-circle-o"></i>
                         Ver Solicitudes de Traslados
@@ -207,7 +207,7 @@
             </li>
 
 
-            <% if current_user.has_role? :asuntos %>
+            <% if current_user.has_role? :asuntos_profesorales %>
                 <li><%= link_to joint_plans_path do%>
                       <i class="fa fa-circle-o"></i>
                       <span>Ver Solicitudes</span></a>

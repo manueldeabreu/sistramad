@@ -79,7 +79,8 @@ Rails.application.configure do
 
   config.action_cable.url = "ws://localhost:3000/cable"
 
-  # SMTP settings for gmail
+    #Esto es para que no use la gema letter opener al enviar correos
+  #config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.delivery_method = :smtp
   #Configuracion para mandar correos en segundo plano con active_job y 'delayed_job_active_record' gem
   #para ejecutar el job: $ bundle exec rake jobs:work
@@ -88,12 +89,12 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => ENV['gmail_username'],
-    :password             => ENV['gmail_password'],
+    :user_name            => 'sistramad@gmail.com',
+    :password             => 'UC.sistramad',
     :authentication       => "plain",
     :enable_starttls_auto => true
   }  
   
-  config.active_job.queue_adapter = :delayed_job 
-
+  # Configuracion para mandar correos en segundo plano con active_job y 'delayed_job_active_record' gem
+  config.active_job.queue_adapter = :delayed_job # para ejecutar el job: $ bundle exec rake jobs:work
 end

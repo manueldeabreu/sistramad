@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @transfer_document.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @transfer_document.status %>
+</p>
+
+<%= link_to 'Edit', edit_transfer_document_path(@transfer_document) %> |
+<%= link_to 'Back', trasfer_documents_path %>

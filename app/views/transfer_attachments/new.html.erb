@@ -1,0 +1,77 @@
+<a>Debe subir al sistema cada documento que se indica a continuacion en los formatos permitidos, el peso maximo de cada archivo no puede ser superior a 1MB.
+
+Los formatos permitidos son: .pdf, .doc, .jpeg, .jpj, .png, .docx, .odt</a>
+<ul class="nav nav-tabs" role="tablist">
+ <li class="active"><%= link_to t('list_attachment'), "#" %></li>
+</ul>
+<%= simple_form_for (@transfer_attachment), :html => {:multipart => true, :class => "new_transfer_attachment"},
+                    wrapper: :horizontal_file_input_sistramad,
+                    wrapper_mappings: {
+                        file: :horizontal_file_input_sistramad
+                    } do |f| %>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+         <% docs = 0 %>
+         <% docs_uploaded = 0 %> 
+        <tbody>
+        <% @transfer_documents.each do |transfer_document| %>
+            <tr>
+              <%= fields_for 'transfer_attachments[]', transfer_document do |x| %>
+                <% docs += 1 %>
+                <td><b><li><%= transfer_document.name %></li></b>
+                  <div class="field">
+                    <div class="transfer_attachments">
+                      <% found = false %>
+                      <% current_user.transfer_attachments.each do |recaudos| %>
+                        <%if recaudos.transfer_document_id == transfer_document.id %>
+                          <% found = true %>
+                          <% docs_uploaded += 1 %>
+                        <% end %>
+                      <%end%>  
+                      <%if !found %>
+                        <div class="file_field" style="margin-right: 300px;padding-top: 5px">
+                          <%= x.file_field :file,class: "filestyle", "data-buttonName"=>"btn-primary",
+                           "data-buttonText"=>"Seleccionar Archivo",
+                           "data-iconName"=>"glyphicon glyphicon-paperclip",
+                           "data-buttonBefore"=>"true"%>
+                          <%= x.hidden_field :transfer_document_id, :value => transfer_document.id%>
+                        </div>
+                      <% else%>
+                        <div class="btn-toolbar">
+                          <div class="btn-group btn-group-xs">
+                            <p>Este Recaudo se encuentra cargado, ¿Desea actualizar este Recaudo?</p>
+                            <% @transfer_attachment = TransferAttachment.find_by(user_id: current_user.id,transfer_document_id: transfer_document.id)%>
+                            <%= link_to 'Actualizar Recaudo', edit_transferattachment_path(@transfer_attachment,:tramite => @formalities_master.id), class: 'btn btn-primary list' %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div><!-- /input-group -->
+                  </div>
+                </td>
+              <% end %>
+
+            </tr>
+
+        <% end %>
+          <%= fields_for 'tramite', @formalities_masters do |tramite| %>
+            <%= tramite.hidden_field :id, :value => @formalities_master.id %>
+            <%= tramite.hidden_field :docs, :value => docs %>
+            <%= tramite.hidden_field :docs_uploaded, :value => docs_uploaded %>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="field">
+        <%= f.submit "Guardar", class:'btn btn-info btn-sm list'%>
+      </div>
+
+    </div>
+<% end %>
+<br><br>
+
+ 
+

@@ -11,9 +11,8 @@ Rails.application.config.assets.precompile += %w( users/avatar_carrier_wave_crop
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-
-#Comentado en la integracion con Luis
-#Rails.application.config.assets.precompile += %w( users/avatar_carrier_wave_crop.js users/avatar_preview_text_input.js )
+Rails.application.config.assets.precompile += %w( users/avatar_carrier_wave_crop.js users/avatar_preview_text_input.js )
+Rails.application.config.assets.precompile += %w( professors_transfers.js )
 # Rails.application.config.assets.precompile += %w( others )
 
 #para agregar las fuentes a la ruta

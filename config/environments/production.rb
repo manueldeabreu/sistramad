@@ -22,7 +22,9 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  #config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
+  
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -84,13 +86,13 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => ENV['gmail_username'],
-    :password             => ENV['gmail_password'],
+    :user_name            => 'sistramad@gmail.com',
+    :password             => 'UC.sistramad',
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
 
   # Configuracion para mandar correos en segundo plano con active_job y 'delayed_job_active_record' gem
   config.active_job.queue_adapter = :delayed_job # para ejecutar el job: $ bundle exec rake jobs:work
-
+  
 end

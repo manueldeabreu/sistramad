@@ -39,6 +39,8 @@ module Sistramad
     #predefinir sass
     config.sass.preferred_syntax = :sass
 
+    # Configuracion para los correos
+    config.active_job.queue_adapter = :delayed_job
 
   end
 end

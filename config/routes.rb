@@ -57,6 +57,81 @@ Rails.application.routes.draw do
       get :validate
       get :show_requirements
       get :show_participants
+  
+    resources :formalities_documents
+    resources :formalities_masters
+    resources :transfer_documents
+    resources :university_degrees
+    resources :universities
+    resources :faculties
+    resources :roles
+    resources :users_roles
+    resources :employees
+    resources :request_manager
+    resources :countries do
+      collection do
+        get :insert_records
+      end
+    end
+
+    #resources :roles do
+    #  member do
+    #    get :addusers
+    #  end
+    #end
+
+    resources :request_manager do
+     member do
+        get :show
+        get :initial_requirements
+        get :approve_initial_requirements
+        get :generate_approval_document
+        #get :approve_document
+        #get :show_document
+        #get :approve_step
+        get :complete
+        get :close
+        get :decline
+      end
+    end
+
+    resources :reviews do
+      member do
+         get :new_aval_and_budget_revision
+         get :show_reviews
+       end
+     end
+
+    resources :joint_plans do
+      collection do
+        post :download
+        get :status
+        post :decline
+        post :accept
+        get :informs
+      end
+    end
+
+    resources :professors_transfers do
+      collection do
+        post :download
+        get :status
+        get 'get_selections', to: "professors_transfers#get_selections"
+        get 'get_selections_dedication', to: "professors_transfers#get_selections_dedication"
+        get 'get_froms', to: "professors_transfers#get_froms"
+        get 'get_to', to: "professors_transfers#get_to"
+        #get :edit
+      end
+    end
+
+
+    resources :reports
+
+    resources :transfer_attachments do
+      collection do
+        post :download
+        post :create_inform
+      end
     end
   end
 

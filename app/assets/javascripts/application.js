@@ -11,6 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+<<<<<<< HEAD
+=======
+//= require jquery.turbolinks
+//= require jquery.jcrop
+>>>>>>> jesus_dev_final
 //= require jquery_ujs
 //= require bootstrap-datepicker
 //= require jquery.Jcrop

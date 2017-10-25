@@ -30,4 +30,5 @@ class SendEmailJob < ApplicationJob
         NotificationMailer.check_comments_and_approve(@email_to, @owner, @procedure_name, @info ).deliver_later
     end
   end
+
 end

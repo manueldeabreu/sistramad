@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs" role="tablist">
- <li class="active"><%= link_to t('list_attachment'), "#" %></li>
+ <li class="active"><%= link_to t('list_transfer_attachment'), "#" %></li>
 </ul>
-<%= simple_form_for @joint_plan, :html => {:multipart => true, :class => "form-horizontal", :id => "attachment"},
+<%= simple_form_for @professor_transfer, :html => {:multipart => true, :class => "form-horizontal", :id => "transfer_attachment"},
                     wrapper: :horizontal_file_input_sistramad,
                     wrapper_mappings: {
                         file: :horizontal_file_input_sistramad
@@ -16,10 +16,10 @@
 
         <tbody>
 
-        <% @joint_plans.each do |document| %>
+        <% @professor_transfers.each do |transfer_document| %>
             <tr>
               <div class="field">
-                <td><b><li><%= document.name %></li></b>
+                <td><b><li><%= transfer_document.name %></li></b>
                   <div class="field">
                   <div class="input-group">
 
@@ -42,5 +42,3 @@
 
 
 <br><br>
-
-

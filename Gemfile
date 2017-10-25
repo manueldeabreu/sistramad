@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 ruby '2.4.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0', '>= 5.0.2'
+gem 'rails', '5.0.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+gem 'pg', '0.18'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -52,7 +52,7 @@ gem 'breadcrumbs_on_rails'
 gem 'simple_form'
 
 # para la paginacion
-gem 'kaminari'
+gem 'kaminari', '0.17.0'
 
 # para instalar el compilador css sass
 gem 'sass'
@@ -69,12 +69,18 @@ gem 'pry-rails', :group => :development
 # para traducir las rutas
 gem 'route_translator'
 
-# para abrir correos desde local
-gem "letter_opener", :group => :production
+# para abrir correos desde local (abre navegador firefox con info del correo)
+#gem "letter_opener", :group => :development
+
+#para que no salgan las peticiones de precompilado assets en la consola
+#gem 'quiet_assets', '~> 1.1', :group => :development
+
 # para el procesamiento de archivos varios
 gem 'carrierwave'
-# pare recortar imagenes
+
+# para agregar la funcionalidad de recorte de imagenes
 gem 'carrierwave-crop'
+
 # para transformar imagenes
 # gem 'rmagick', '~> 2.15', '>= 2.15.4'
 
@@ -86,8 +92,11 @@ gem 'jquery-turbolinks'
 
 # para adjuntar archivos
 gem 'paperclip'
-# Para creat archivos zip
+# Para crear archivos zip
 gem 'rubyzip'
+# Crear ventanas modales (pop-ups)
+gem 'magnific-popup-rails', '~> 1.1.0' 
+
 # Creat ventanas modales (pop-ups)
 gem 'magnific-popup-rails', '~> 1.1.0'
 
@@ -106,6 +115,11 @@ gem 'whenever', require: false
 
 # se reemplazo el servidor de web-brick a puma 
 gem "puma"
+gem 'aasm'
+
+# Backend para procesos en background
+gem 'delayed_job_active_record'
+
 # para generar pdf
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
@@ -118,4 +132,10 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+end
+#crea un dump de la base de datos esto para heroku
+gem 'seed_dump'
+
+group :development, :test do
+  gem 'railroady'
 end

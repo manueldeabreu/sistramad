@@ -15,4 +15,14 @@ module EmailService
     end
   end
   
-end
+  def send_email_transfer(user, mail_template, transfer)
+    SendEmailTransferJob.set(wait: 10.seconds).perform_later(user, mail_template, transfer)
+  end
+
+  def send_emails_transfer(users, mail_template, transfer)
+    users.each do |user|
+      SendEmailTransferJob.set(wait: 10.seconds).perform_later(user, mail_template, transfer)
+    end
+  end
+    
+  end

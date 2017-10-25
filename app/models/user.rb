@@ -2,13 +2,14 @@ class User < ApplicationRecord
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login, :avatar, :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h
+  after_create :assign_default_role
 
   rolify #se pueden agregar opciones a la gema
 
   # Include default devise modules. Others available are:
   # :confirmable, :timeoutable and :omniauthable
   # :registerable,
-  devise :invitable, :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable
+  devise :invitable ,:database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   has_one :employee, inverse_of: :user
   has_one :joint_plan, inverse_of: :user
@@ -20,6 +21,10 @@ class User < ApplicationRecord
   has_many :documents
   has_many :user_groups
   has_many :groups, through: :user_groups
+  has_many :professors_transfer, inverse_of: :user
+  has_many :transfer_attachments
+  has_many :reviews
+  accepts_nested_attributes_for :transfer_attachments
 
   mount_uploader :avatar, AvatarUploader
   crop_uploaded :avatar
@@ -83,5 +88,13 @@ class User < ApplicationRecord
   def self.matches(field_name, param)
     where("lower(#{field_name}) like ?", "%#{param}%")
   end
+  def assign_default_role
+    self.add_role(:test) if self.roles.blank?
+  end
+
+  def self.with_role(role)
+    my_role = Role.find_by_name(role)
+    where(:role => my_role)
+ end
 
 end

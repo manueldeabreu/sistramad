@@ -38,7 +38,7 @@ Group.new(name: "Director de Escuela", code: "D50", description: "Director del D
 #Role.new(name: "director_escuela").save
 
 #Usuarios con Roles
-user = User.new(:username => 'test',
+#user = User.new(:username => 'test',
 Role.create!([
   {name: "admin", resource_id: nil, resource_type: nil},
   {name: "test", resource_id: nil, resource_type: nil},

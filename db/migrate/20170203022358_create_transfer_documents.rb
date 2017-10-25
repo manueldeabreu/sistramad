@@ -1,4 +1,4 @@
-class CreateTransferDocuments < ActiveRecord::Migration
+class CreateTransferDocuments < ActiveRecord::Migration[5.1]
   def change
     create_table :transfer_documents do |t|
       t.string :name

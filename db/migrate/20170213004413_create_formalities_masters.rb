@@ -1,4 +1,4 @@
-class CreateFormalitiesMasters < ActiveRecord::Migration
+class CreateFormalitiesMasters < ActiveRecord::Migration[5.1]
   def change
     create_table :formalities_masters do |t|
       t.string :name

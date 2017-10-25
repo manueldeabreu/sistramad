@@ -1,4 +1,4 @@
-class CreateWorkflowSteps < ActiveRecord::Migration
+class CreateWorkflowSteps < ActiveRecord::Migration[5.1]
   def change
     create_table :workflow_steps do |t|
       t.string :name

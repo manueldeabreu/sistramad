@@ -1,4 +1,4 @@
-class CreateRequestWorkflows < ActiveRecord::Migration
+class CreateRequestWorkflows < ActiveRecord::Migration[5.1]
   def change
     create_table :request_workflows do |t|
       t.string :name

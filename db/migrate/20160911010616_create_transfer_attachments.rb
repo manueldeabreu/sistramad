@@ -1,4 +1,4 @@
-class CreateTransferAttachments < ActiveRecord::Migration
+class CreateTransferAttachments < ActiveRecord::Migration[5.1]
   def change
     create_table :transfer_attachments do |t|
       t.references :user

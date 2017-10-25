@@ -1,4 +1,4 @@
-class CreateFormalitiesDocuments < ActiveRecord::Migration
+class CreateFormalitiesDocuments < ActiveRecord::Migration[5.1]
   def change
     create_table :formalities_documents do |t|
       t.references :formalities_master, index: true, foreign_key: true

@@ -52,7 +52,7 @@ gem 'breadcrumbs_on_rails'
 gem 'simple_form'
 
 # para la paginacion
-gem 'kaminari'
+gem 'kaminari', '0.17.0'
 
 # para instalar el compilador css sass
 gem 'sass'

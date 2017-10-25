@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       get :validate
       get :show_requirements
       get :show_participants
+    end  
   end
 
     resources :formalities_documents

@@ -52,7 +52,7 @@ gem 'breadcrumbs_on_rails'
 gem 'simple_form'
 
 # para la paginacion
-gem 'kaminari', '0.17.0'
+gem 'kaminari'
 
 # para instalar el compilador css sass
 gem 'sass'
@@ -69,18 +69,12 @@ gem 'pry-rails', :group => :development
 # para traducir las rutas
 gem 'route_translator'
 
-# para abrir correos desde local (abre navegador firefox con info del correo)
-#gem "letter_opener", :group => :development
-
-#para que no salgan las peticiones de precompilado assets en la consola
-#gem 'quiet_assets', '~> 1.1', :group => :development
-
+# para abrir correos desde local
+gem "letter_opener", :group => :production
 # para el procesamiento de archivos varios
 gem 'carrierwave'
-
-# para agregar la funcionalidad de recorte de imagenes
+# pare recortar imagenes
 gem 'carrierwave-crop'
-
 # para transformar imagenes
 # gem 'rmagick', '~> 2.15', '>= 2.15.4'
 
@@ -92,10 +86,10 @@ gem 'jquery-turbolinks'
 
 # para adjuntar archivos
 gem 'paperclip'
-# Para crear archivos zip
+# Para creat archivos zip
 gem 'rubyzip'
-# Crear ventanas modales (pop-ups)
-gem 'magnific-popup-rails', '~> 1.1.0' 
+# Creat ventanas modales (pop-ups)
+gem 'magnific-popup-rails', '~> 1.1.0'
 
 #Amazon WS
 #gem 'aws-sdk', '~> 2.3'
@@ -112,7 +106,6 @@ gem 'whenever', require: false
 
 # se reemplazo el servidor de web-brick a puma 
 gem "puma"
-
 # para generar pdf
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

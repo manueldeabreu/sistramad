@@ -57,7 +57,8 @@ Rails.application.routes.draw do
       get :validate
       get :show_requirements
       get :show_participants
-  
+  end
+
     resources :formalities_documents
     resources :formalities_masters
     resources :transfer_documents
@@ -133,7 +134,6 @@ Rails.application.routes.draw do
         post :create_inform
       end
     end
-  end
 
   resources :delay_rotation_plans do
     member do

@@ -304,9 +304,9 @@ user = User.new( :id => 9,
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
         :password_confirmation => '123456')
-user.save!
 user.add_role(:representante_facultad)
 user.add_role(:admin)
+user.save!(:validate => false)
 
 
 user = User.new(:id => 10,
@@ -320,9 +320,9 @@ user = User.new(:id => 10,
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
         :password_confirmation => '123456')
-user.save!
 user.add_role(:jefe_departamento)
 user.add_role(:admin)
+user.save!(:validate => false)
 
 user = User.new(:id => 11,
         :username => 'dirdep',
@@ -335,9 +335,9 @@ user = User.new(:id => 11,
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
         :password_confirmation => '123456')
-user.save!
 user.add_role(:director_departamento)
 user.add_role(:admin)
+user.save!(:validate => false)
 
 user = User.new(:id => 12,
         :username => 'director_escuela',
@@ -350,9 +350,9 @@ user = User.new(:id => 12,
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
         :password_confirmation => '123456')
-user.save!
 user.add_role(:director_escuela)
 user.add_role(:admin)
+user.save!(:validate => false)
 
 
 #Carga el Maestro de Documentos:

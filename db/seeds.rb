@@ -622,7 +622,7 @@ ReferenceList.create!([
   {name: "Facultad de Odontología ", description: "Facultad de Odontología ", value: "Facultad de Odontología ", reference_id: 8}
 ])
 Employee.create!([
-  {user_id: 4, type_employee_id: 2, scale_classification_id: 1, scale_category_id: 2, dedication_classification_id: nil, dedication_start_date: nil},
+  {user_id: 4, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: nil, dedication_start_date: nil},
   {user_id: 3, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: nil, dedication_start_date: nil},
   {user_id: 8, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: 56, dedication_start_date: "2017-10-08"},
   {user_id: 15, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: 56, dedication_start_date: "2016-10-30"}
@@ -638,7 +638,7 @@ Faculty.create!([
 ])
 #Seeds de Luis
 
-employee = Employee.new(:user_id => 5,:type_employee_id => 2,:scale_classification_id => 1,:scale_category_id => 2)
+employee = Employee.new(:user_id => 5,:type_employee_id => 40,:scale_classification_id => 30,:scale_category_id => 35)
 employee.faculties << Faculty.find(1)
 employee.save!
 

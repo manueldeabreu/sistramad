@@ -115,10 +115,6 @@ gem 'whenever', require: false
 
 # se reemplazo el servidor de web-brick a puma 
 gem "puma"
-gem 'aasm'
-
-# Backend para procesos en background
-gem 'delayed_job_active_record'
 
 # para generar pdf
 gem 'wicked_pdf'

@@ -97,9 +97,6 @@ gem 'rubyzip'
 # Crear ventanas modales (pop-ups)
 gem 'magnific-popup-rails', '~> 1.1.0' 
 
-# Creat ventanas modales (pop-ups)
-gem 'magnific-popup-rails', '~> 1.1.0'
-
 #Amazon WS
 #gem 'aws-sdk', '~> 2.3'
 

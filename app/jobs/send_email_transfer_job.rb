@@ -8,7 +8,7 @@ class SendEmailTransferJob < ApplicationJob
       send_mail()
     end
   
-    def send_mail_transfer()
+    def send_mail()
       case @mail_template
         when 'initial_validation_success' then 
           NotificationMailer.initial_validation_success_email_transfer(@user,@transfer).deliver_later

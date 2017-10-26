@@ -1,5 +1,5 @@
 class Workflow
-    
+  include EmailService
       attr_accessor :name
       attr_accessor :type_of_translate
       attr_accessor :professors_transfer

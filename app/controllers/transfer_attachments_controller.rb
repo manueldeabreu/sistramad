@@ -13,7 +13,7 @@ class TransferAttachmentsController < ApplicationController
   end
 
   def index
-    @attachments = TransferAttachment.all
+    @transfer_attachments = TransferAttachment.all
   end
 
   def show
@@ -50,7 +50,7 @@ class TransferAttachmentsController < ApplicationController
           attach.each do |doc|
             if doc[1][:file] != nil
                 uploads += 1
-                @transfer_attachment = current_user.attachments.new(attachment_params(doc[1]))
+                @transfer_attachment = current_user.transfer_attachments.new(transfer_attachment_params(doc[1]))
                 @transfer_attachment.save
               if doc[1][:transfer_document_id] == '16' || doc[1][:transfer_document_id] == '17'
                 inform = true

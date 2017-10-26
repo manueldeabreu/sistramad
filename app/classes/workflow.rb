@@ -20,6 +20,8 @@ class Workflow
         step.aprobar!
         step.update(approval_date: Time.now)
         start_step(step_number+1)
+        users = Role.find_by(id: step.role_id).users
+        send_emails_transfer(users,'need_to_approve',self.professors_transfer)
         step.AP?
       end
 

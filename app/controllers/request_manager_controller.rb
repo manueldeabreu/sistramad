@@ -24,6 +24,7 @@ class RequestManagerController < ApplicationController
         professors_transfer_instance = get_professors_transfer_instance(@professors_transfer)
         
         if professors_transfer_instance.approve_initial_requirements? 
+          send_email_transfer(professors_transfer_instance.user, 'step_approved',professors_transfer_instance)
           flash[:success] = 'Los documentos han sido aprobados con exito.'
           render 'show'
         else
@@ -59,7 +60,7 @@ class RequestManagerController < ApplicationController
         step = Step.find(params[:step])
         if step.IP?
           step.aprobar!
-          send_email(@professorstransfer.user, 'step_approved')
+          send_email_transfer(@professorstransfer.user, 'step_approved',@professorstransfer)
           flash[:success] = 'Paso aprobado con exito!.'
         else
           flash[:error] = 'Imposible realizar ésta acción.'

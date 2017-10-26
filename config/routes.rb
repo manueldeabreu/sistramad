@@ -233,7 +233,7 @@ Rails.application.routes.draw do
     end
   end
 
-  #mount ActionCable.server => '/cable'
-  mount Sidekiq::Web => '/sidekiq'
+  mount ActionCable.server => '/cable'
+  #mount Sidekiq::Web => '/sidekiq'
 
 end

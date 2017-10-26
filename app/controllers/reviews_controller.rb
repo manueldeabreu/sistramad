@@ -109,7 +109,13 @@ class ReviewsController < ApplicationController
    end
 
    def get_professors_transfer_instance(professors_transfer)
-      type = Reference.find(@professors_transfer.type_of_translate).name
+      process_type = @professors_transfer.process_type.id
+      if (process_type ==1)
+        type = Reference.find(@professors_transfer.type_of_translate).name
+      end
+      if (process_type ==3)
+        type = ReferenceList.find(@professors_transfer.type_of_translate).name
+      end 
       instance = get_request_from_factory(type)
       instance.professors_transfer = professors_transfer
       return instance

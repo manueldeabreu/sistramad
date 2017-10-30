@@ -57,7 +57,8 @@ Role.create!([
   {name: "director_escuela", resource_id: nil, resource_type: nil}
 ])
 
-user = User.new(:id => 1,
+user = User.new(
+                #:id => 1,
                 :username => 'admin',
                 :email => 'admin@admin.com',
                 :password => '123456', #Devise.friendly_token[0,20]
@@ -67,7 +68,8 @@ user.add_role(:admin)
 user.add_role(:system_admin)                 
 user.save!(:validate => false)
 
-user = User.new(:id => 2,
+user = User.new(
+                #:id => 2,
                 :username => 'test',
                 :email => 'test@test.com',
                 :password => '123456', #Devise.friendly_token[0,20]
@@ -76,7 +78,8 @@ user = User.new(:id => 2,
 user.add_role(:test)                
 user.save!(:validate => false)
 
-user = User.new( :id => 3,
+user = User.new( 
+                #:id => 3,
                 :username => 'joalbert',
                 :email => 'joalbertgonzalez@gmail.com',
                 :first_name => 'joalbert',
@@ -91,171 +94,24 @@ user.add_role(:admin)
 user.add_role(:test)
 user.save!(:validate => false)
 
-user = User.new(:id => 8,
-                :username => 'jesusdeabreu',
-                :email => 'jmanueldeabreum2@gmail.com',
-                :first_name => 'jesus',
-                :middle_name => 'manuel',
-                :last_name => 'de abreu',
-                :genre => 'm',
-                :identification_document => '18241890',
-                :birthday => "21/12/1988".to_date,
-                :password => 'jmdam182', #Devise.friendly_token[0,20]
-                :password_confirmation => 'jmdam182',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:admin)
-user.add_role(:system_admin)
-user.add_role(:test)
-user.add_role(:docente)                
-user.save!(:validate => false)
-
-user = User.new(:id => 4,
-                :username => 'lisset',
-                :email => 'liss612@gmail.com',
-                :first_name => 'lisset',
-                :middle_name => 'alexandra',
-                :last_name => 'orozco',
-                :genre => 'f',
-                :identification_document => '18686803',
-                :birthday => "06/10/1987".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
+user = User.new(
+  #:id => 4,
+:username => 'lisset',
+:email => 'liss612@gmail.com',
+:first_name => 'lisset',
+:middle_name => 'alexandra',
+:last_name => 'orozco',
+:genre => 'f',
+:identification_document => '18686803',
+:birthday => "06/10/1987".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:test)                
 user.save!(:validate => false)
 
-
-user = User.new(:id => 13,
-                :username => 'decano',
-                :email => 'decano@test.com',
-                :first_name => 'jose',
-                :middle_name => 'x',
-                :last_name => 'marcano',
-                :genre => 'm',
-                :identification_document => '1000',
-                :birthday => "06/10/1960".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:admin)                
-user.add_role(:docente)
-user.add_role(:decano)                
-user.save!(:validate => false)
-
-
-user = User.new(:id => 14,
-                :username => 'asuntos',
-                :email => 'jmanueldeabreum@gmail.com',
-                :first_name => 'Dirección de asuntos profesorales',
-                :middle_name => 'x',
-                :last_name => '',
-                :genre => 'm',
-                :identification_document => '1000',
-                :birthday => "06/10/1960".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:docente)
-user.add_role(:admin)
-user.add_role(:asuntos_profesorales)
-user.save!(:validate => false)
-
-user = User.new(:id => 15,
-                :username => 'iperez',
-                :email => 'jemadam@hotmail.com',
-                :first_name => 'Ivan',
-                :middle_name => 'Enrique',
-                :last_name => 'Perez',
-                :genre => 'm',
-                :identification_document => '19878987',
-                :birthday => "1990-12-14".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:docente)
-user.save!(:validate => false)
-
-user = User.new(:id => 24,
-                :username => 'consejouniversitario',
-                :email => 'consejoUniversitario@test.com',
-                :first_name => 'Consejo',
-                :middle_name => 'x',
-                :last_name => 'Universitario',
-                :genre => 'm',
-                :identification_document => '1001',
-                :birthday => "06/10/1970".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:consejo_universitario)
-user.add_role(:admin)
-user.save!(:validate => false)
-
-user = User.new(:id => 21,
-                :username => 'departamento',
-                :email => 'Departamento@test.com',
-                :first_name => 'Departamento',
-                :middle_name => 'x',
-                :last_name => 'Departamento',
-                :genre => 'm',
-                :identification_document => '1002',
-                :birthday => "06/10/1966".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:departamento)
-user.add_role(:admin)
-user.save!(:validate => false)                
-
-user = User.new(:id => 22,
-                :username => 'consejoescuela',
-                :email => 'consejoEscuela@test.com',
-                :first_name => 'Consejo',
-                :middle_name => 'x',
-                :last_name => 'Escuela',
-                :genre => 'm',
-                :identification_document => '1003',
-                :birthday => "06/10/1967".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00") 
-user.add_role(:consejo_escuela)
-user.save!(:validate => false) 
-
-
-user = User.new(:id => 20,
-                :username => 'consejodepartamento',
-                :email => 'consejoDepartamental@test.com',
-                :first_name => 'Consejo',
-                :middle_name => 'x',
-                :last_name => 'Departamental',
-                :genre => 'm',
-                :identification_document => '1001',
-                :birthday => "06/10/1965".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:consejo_departamento)
-user.add_role(:admin)
-user.save!(:validate => false)
-
-user = User.new(:id => 23,
-                :username => 'consejofacultad',
-                :email => 'consejoFacultad@test.com',
-                :first_name => 'Consejo',
-                :middle_name => 'x',
-                :last_name => 'Facultad',
-                :genre => 'm',
-                :identification_document => '1004',
-                :birthday => "06/10/1968".to_date,
-                :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456',
-                :remember_created_at => "2016-01-01 00:00:00")
-user.add_role(:consejo_facultad) 
-user.add_role(:admin)                 
-user.save!(:validate => false)
-
-user = User.new( :id => 5,
+user = User.new( 
+  #:id => 5,
 :username => 'lfagundez',
 :email => 'lfagundez@outlook.com',
 :first_name => 'Luis',
@@ -273,7 +129,8 @@ user.add_role(:test)
 user.add_role(:docente)                
 user.save!(:validate => false)
 
-user = User.new(:id => 6,
+user = User.new(
+  #:id => 6,
                 :username => 'amatute',
                 :email => 'alexghoro@outlook.com',
                 :first_name => 'Alejandro',
@@ -291,7 +148,8 @@ user.add_role(:test)
 user.add_role(:docente)                
 user.save!(:validate => false)
 
-user = User.new(:id => 7,
+user = User.new(
+  #:id => 7,
                 :username => 'jceballos',
                 :email => 'jonnyceballos@gmail.com',
                 :first_name => 'Jonny',
@@ -309,71 +167,231 @@ user.add_role(:test)
 user.add_role(:docente)                
 user.save!(:validate => false)
 
-user = User.new( :id => 9,
-        :username => 'repfac',
-        :email => 'representantedefacultad@correo.com',
-        :first_name => 'Representante de Facultad',
-        :middle_name => '',
-        :last_name => ' ',
-        :genre => 'm',
-        :identification_document => '40',
-        :birthday => "15/08/1988".to_date,
-        :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456',
-        :remember_created_at => "2016-01-01 00:00:00")
+user = User.new(
+  #:id => 8,
+                :username => 'jesusdeabreu',
+                :email => 'jmanueldeabreum2@gmail.com',
+                :first_name => 'jesus',
+                :middle_name => 'manuel',
+                :last_name => 'de abreu',
+                :genre => 'm',
+                :identification_document => '18241890',
+                :birthday => "21/12/1988".to_date,
+                :password => 'jmdam182', #Devise.friendly_token[0,20]
+                :password_confirmation => 'jmdam182',
+                :remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:admin)
+user.add_role(:system_admin)
+user.add_role(:test)
+user.add_role(:docente)                
+user.save!(:validate => false)
+
+user = User.new( 
+  #:id => 9,
+:username => 'repfac',
+:email => 'representantedefacultad@correo.com',
+:first_name => 'Representante de Facultad',
+:middle_name => '',
+:last_name => ' ',
+:genre => 'm',
+:identification_document => '40',
+:birthday => "15/08/1988".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:representante_facultad)
 user.add_role(:admin)
 user.save!(:validate => false)
 
 
-user = User.new(:id => 10,
-        :username => 'jefe_departamento',
-        :email => 'jefedepartamento@correo.com',
-        :first_name => 'Jefe de Departamento',
-        :middle_name => '',
-        :last_name => ' ',
-        :genre => 'm',
-        :identification_document => '60',
-        :birthday => "15/08/1988".to_date,
-        :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456',
-        :remember_created_at => "2016-01-01 00:00:00")
+user = User.new(
+  #:id => 10,
+:username => 'jefe_departamento',
+:email => 'jefedepartamento@correo.com',
+:first_name => 'Jefe de Departamento',
+:middle_name => '',
+:last_name => ' ',
+:genre => 'm',
+:identification_document => '60',
+:birthday => "15/08/1988".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:jefe_departamento)
 user.add_role(:admin)
 user.save!(:validate => false)
 
-user = User.new(:id => 11,
-        :username => 'dirdep',
-        :email => 'direcciondepartamento@correo.com',
-        :first_name => 'Director de Departamento',
-        :middle_name => '',
-        :last_name => ' ',
-        :genre => 'm',
-        :identification_document => '70',
-        :birthday => "15/08/1988".to_date,
-        :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456',
-        :remember_created_at => "2016-01-01 00:00:00")
+user = User.new(
+  #:id => 11,
+:username => 'dirdep',
+:email => 'direcciondepartamento@correo.com',
+:first_name => 'Director de Departamento',
+:middle_name => '',
+:last_name => ' ',
+:genre => 'm',
+:identification_document => '70',
+:birthday => "15/08/1988".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:director_departamento)
 user.add_role(:admin)
 user.save!(:validate => false)
 
-user = User.new(:id => 12,
-        :username => 'director_escuela',
-        :email => 'directorescuela@correo.com',
-        :first_name => 'Director Escuela',
-        :middle_name => '',
-        :last_name => ' ',
-        :genre => 'm',
-        :identification_document => '90',
-        :birthday => "15/08/1988".to_date,
-        :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456',
-        :remember_created_at => "2016-01-01 00:00:00")
+user = User.new(
+  #:id => 12,
+:username => 'director_escuela',
+:email => 'directorescuela@correo.com',
+:first_name => 'Director Escuela',
+:middle_name => '',
+:last_name => ' ',
+:genre => 'm',
+:identification_document => '90',
+:birthday => "15/08/1988".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:director_escuela)
 user.add_role(:admin)
 user.save!(:validate => false)
 
+user = User.new(
+  #:id => 13,
+                :username => 'decano',
+                :email => 'decano@test.com',
+                :first_name => 'jose',
+                :middle_name => 'x',
+                :last_name => 'marcano',
+                :genre => 'm',
+                :identification_document => '1000',
+                :birthday => "06/10/1960".to_date,
+                :password => '123456', #Devise.friendly_token[0,20]
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:admin)                
+user.add_role(:docente)
+user.add_role(:decano)                
+user.save!(:validate => false)
+
+
+user = User.new(
+  #:id => 14,
+                :username => 'asuntos',
+                :email => 'jmanueldeabreum@gmail.com',
+                :first_name => 'Dirección de asuntos profesorales',
+                :middle_name => 'x',
+                :last_name => '',
+                :genre => 'm',
+                :identification_document => '1000',
+                :birthday => "06/10/1960".to_date,
+                :password => '123456', #Devise.friendly_token[0,20]
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:docente)
+user.add_role(:admin)
+user.add_role(:asuntos_profesorales)
+user.save!(:validate => false)
+
+user = User.new(
+  #:id => 15,
+                :username => 'iperez',
+                :email => 'jemadam@hotmail.com',
+                :first_name => 'Ivan',
+                :middle_name => 'Enrique',
+                :last_name => 'Perez',
+                :genre => 'm',
+                :identification_document => '19878987',
+                :birthday => "1990-12-14".to_date,
+                :password => '123456', #Devise.friendly_token[0,20]
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:docente)
+user.save!(:validate => false)
+
+user = User.new(
+  #:id => 20, now 16
+:username => 'consejodepartamento',
+:email => 'consejoDepartamental@test.com',
+:first_name => 'Consejo',
+:middle_name => 'x',
+:last_name => 'Departamental',
+:genre => 'm',
+:identification_document => '1001',
+:birthday => "06/10/1965".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:consejo_departamento)
+user.add_role(:admin)
+user.save!(:validate => false)
+
+user = User.new(
+  #:id => 21, now 17
+                :username => 'departamento',
+                :email => 'Departamento@test.com',
+                :first_name => 'Departamento',
+                :middle_name => 'x',
+                :last_name => 'Departamento',
+                :genre => 'm',
+                :identification_document => '1002',
+                :birthday => "06/10/1966".to_date,
+                :password => '123456', #Devise.friendly_token[0,20]
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:departamento)
+user.add_role(:admin)
+user.save!(:validate => false)                
+
+user = User.new(
+  #:id => 22, now 18
+                :username => 'consejoescuela',
+                :email => 'consejoEscuela@test.com',
+                :first_name => 'Consejo',
+                :middle_name => 'x',
+                :last_name => 'Escuela',
+                :genre => 'm',
+                :identification_document => '1003',
+                :birthday => "06/10/1967".to_date,
+                :password => '123456', #Devise.friendly_token[0,20]
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00") 
+user.add_role(:consejo_escuela)
+user.save!(:validate => false) 
+
+user = User.new(
+  #:id => 23, now 19
+                :username => 'consejofacultad',
+                :email => 'consejoFacultad@test.com',
+                :first_name => 'Consejo',
+                :middle_name => 'x',
+                :last_name => 'Facultad',
+                :genre => 'm',
+                :identification_document => '1004',
+                :birthday => "06/10/1968".to_date,
+                :password => '123456', #Devise.friendly_token[0,20]
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:consejo_facultad) 
+user.add_role(:admin)                 
+user.save!(:validate => false)
+
+
+user = User.new(
+  #:id => 24, now 20
+:username => 'consejouniversitario',
+:email => 'consejoUniversitario@test.com',
+:first_name => 'Consejo',
+:middle_name => 'x',
+:last_name => 'Universitario',
+:genre => 'm',
+:identification_document => '1001',
+:birthday => "06/10/1970".to_date,
+:password => '123456', #Devise.friendly_token[0,20]
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
+user.add_role(:consejo_universitario)
+user.add_role(:admin)
+user.save!(:validate => false)
 
 #Carga el Maestro de Documentos:
 
@@ -835,12 +853,12 @@ WorkflowStep.create!([
   {id: 156,name: "Analisis y Remisión de juicio a Decano.", description: nil, request_workflow_id: 29, approval_date: "2017-10-20", role_id: 6, info: nil, step_number: 2, is_active: true, is_completed: nil, status: "AP"}
 ])
 Review.create!([
-  {name: "Analisis y Remisión de juicio a Consejo de Departamento.", comment: "igyggkjgj yg iyg iughklj hk ", files_reviewed: true, approval: true, workflow_step_id: 125, user_id: 24},
-  {name: "Analisis y Remisión de juicio a Decano.", comment: "", files_reviewed: true, approval: true, workflow_step_id: 126, user_id: 20},
+  {name: "Analisis y Remisión de juicio a Consejo de Departamento.", comment: "igyggkjgj yg iyg iughklj hk ", files_reviewed: true, approval: true, workflow_step_id: 125, user_id: 20},
+  {name: "Analisis y Remisión de juicio a Decano.", comment: "", files_reviewed: true, approval: true, workflow_step_id: 126, user_id: 16},
   {name: "Analisis y Remisión de juicio de Asuntos Profesorales.", comment: "", files_reviewed: true, approval: true, workflow_step_id: 127, user_id: 13},
   {name: "Verificar Aval Academico y Presupuestario", comment: "", files_reviewed: true, approval: true, workflow_step_id: 128, user_id: 14},
   {name: "Analisis y Remisión de juicio a Consejo de Facultad", comment: "Se aprueba", files_reviewed: true, approval: true, workflow_step_id: 129, user_id: 14},
-  {name: "Analisis y Remisión de juicio a Decano.", comment: "Esta todo correcto, apruebo el Trámite", files_reviewed: true, approval: true, workflow_step_id: 156, user_id: 20},
+  {name: "Analisis y Remisión de juicio a Decano.", comment: "Esta todo correcto, apruebo el Trámite", files_reviewed: true, approval: true, workflow_step_id: 156, user_id: 16},
   {name: "Analisis y Remisión de juicio de Asuntos Profesorales.", comment: "OK", files_reviewed: true, approval: true, workflow_step_id: 157, user_id: 13},
   {name: "Verificar Aval Academico y Presupuestario", comment: "ok", files_reviewed: true, approval: true, workflow_step_id: 158, user_id: 14},
   {name: "Analisis y Remisión de juicio a Consejo de Facultad", comment: "ok", files_reviewed: true, approval: true, workflow_step_id: 159, user_id: 14}

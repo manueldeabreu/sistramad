@@ -110,7 +110,7 @@
                <% if (ProfessorsTransfer.where('process_type = ? and user_id =?',1,current_user.id).empty? && (current_user.has_role? :docente)) %>
                       <li><%= link_to new_transfer_attachment_path(:tramite => 1),method: :get do%>
                             <i class="fa fa-circle"></i>
-                            Solicitar Traslado
+                            Solicitar Trámite
                       <% end %>
                       </li>
                 <% else %>
@@ -148,7 +148,7 @@
                 <% if (ProfessorsTransfer.where('process_type = ? and user_id =?',3,current_user.id).empty? && (current_user.has_role? :docente) && (current_user.employee.present?))%>
                 <li><%= link_to new_transfer_attachment_path(:tramite => 3),method: :get do%>
                       <i class="fa fa-circle"></i>
-                      Solicitar Cambio de Dedicación
+                      Solicitar Trámite
                 <% end %>
                 </li>
                 <% else %>
@@ -159,7 +159,7 @@
                               Enviar Recaudos Faltantes
                       <% end %>
                         </li>
-                    <% elsif ProfessorsTransfer.where('process_type = ? and user_id =? and status = ?',3,current_user.id,'DR').present? %>
+                    <% elsif ProfessorsTransfer.where('process_type = ? and user_id =? and status = ?',3,current_user.id,'CL').present? %>
                         <li><%= link_to new_transfer_attachment_path(:tramite => 3 ),method: :get do%>
                                 <i class="fa fa-circle"></i>
                                 Solicitar Cambio de Dedicación
@@ -168,7 +168,7 @@
                     <% end %>
                       <li><%= link_to status_professors_transfers_path ,method: :get do%>
                         <i class="fa fa-circle"></i>
-                        Estatus de Cambio de Dedicación
+                        Estatus de Trámite
                       <% end %>
                     </li> 
                 <% end %> 

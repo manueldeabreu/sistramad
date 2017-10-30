@@ -61,7 +61,8 @@ user = User.new(:id => 1,
                 :username => 'admin',
                 :email => 'admin@admin.com',
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:admin)
 user.add_role(:system_admin)                 
 user.save!(:validate => false)
@@ -70,7 +71,8 @@ user = User.new(:id => 2,
                 :username => 'test',
                 :email => 'test@test.com',
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:test)                
 user.save!(:validate => false)
 
@@ -83,7 +85,8 @@ user = User.new( :id => 3,
                 :identification_document => '18468784',
                 :birthday => "24/11/1988".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-               :password_confirmation => '123456')
+               :password_confirmation => '123456',
+               :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:admin)
 user.add_role(:test)
 user.save!(:validate => false)
@@ -98,7 +101,8 @@ user = User.new(:id => 8,
                 :identification_document => '18241890',
                 :birthday => "21/12/1988".to_date,
                 :password => 'jmdam182', #Devise.friendly_token[0,20]
-                :password_confirmation => 'jmdam182')
+                :password_confirmation => 'jmdam182',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:admin)
 user.add_role(:system_admin)
 user.add_role(:test)
@@ -115,7 +119,8 @@ user = User.new(:id => 4,
                 :identification_document => '18686803',
                 :birthday => "06/10/1987".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:test)                
 user.save!(:validate => false)
 
@@ -130,7 +135,8 @@ user = User.new(:id => 13,
                 :identification_document => '1000',
                 :birthday => "06/10/1960".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:admin)                
 user.add_role(:docente)
 user.add_role(:decano)                
@@ -147,7 +153,8 @@ user = User.new(:id => 14,
                 :identification_document => '1000',
                 :birthday => "06/10/1960".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:docente)
 user.add_role(:admin)
 user.add_role(:asuntos_profesorales)
@@ -163,7 +170,8 @@ user = User.new(:id => 15,
                 :identification_document => '19878987',
                 :birthday => "1990-12-14".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:docente)
 user.save!(:validate => false)
 
@@ -177,7 +185,8 @@ user = User.new(:id => 24,
                 :identification_document => '1001',
                 :birthday => "06/10/1970".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:consejo_universitario)
 user.add_role(:admin)
 user.save!(:validate => false)
@@ -192,7 +201,8 @@ user = User.new(:id => 21,
                 :identification_document => '1002',
                 :birthday => "06/10/1966".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:departamento)
 user.add_role(:admin)
 user.save!(:validate => false)                
@@ -207,7 +217,8 @@ user = User.new(:id => 22,
                 :identification_document => '1003',
                 :birthday => "06/10/1967".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456') 
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00") 
 user.add_role(:consejo_escuela)
 user.save!(:validate => false) 
 
@@ -222,7 +233,8 @@ user = User.new(:id => 20,
                 :identification_document => '1001',
                 :birthday => "06/10/1965".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:consejo_departamento)
 user.add_role(:admin)
 user.save!(:validate => false)
@@ -237,7 +249,8 @@ user = User.new(:id => 23,
                 :identification_document => '1004',
                 :birthday => "06/10/1968".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:consejo_facultad) 
 user.add_role(:admin)                 
 user.save!(:validate => false)
@@ -252,7 +265,8 @@ user = User.new( :id => 5,
 :identification_document => '18347734',
 :birthday => "23/09/1989".to_date,
 :password => '123456', #Devise.friendly_token[0,20]
-:password_confirmation => '123456')
+:password_confirmation => '123456',
+:remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:admin)
 user.add_role(:system_admin)
 user.add_role(:test)
@@ -269,7 +283,8 @@ user = User.new(:id => 6,
                 :identification_document => '18347734',
                 :birthday => "15/08/1988".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:admin)
 user.add_role(:system_admin)
 user.add_role(:test)
@@ -286,7 +301,8 @@ user = User.new(:id => 7,
                 :identification_document => '17755525',
                 :birthday => "02/06/1986".to_date,
                 :password => '123456', #Devise.friendly_token[0,20]
-                :password_confirmation => '123456')
+                :password_confirmation => '123456',
+                :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:admin)
 user.add_role(:system_admin)
 user.add_role(:test)
@@ -303,7 +319,8 @@ user = User.new( :id => 9,
         :identification_document => '40',
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456')
+        :password_confirmation => '123456',
+        :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:representante_facultad)
 user.add_role(:admin)
 user.save!(:validate => false)
@@ -319,7 +336,8 @@ user = User.new(:id => 10,
         :identification_document => '60',
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456')
+        :password_confirmation => '123456',
+        :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:jefe_departamento)
 user.add_role(:admin)
 user.save!(:validate => false)
@@ -334,7 +352,8 @@ user = User.new(:id => 11,
         :identification_document => '70',
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456')
+        :password_confirmation => '123456',
+        :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:director_departamento)
 user.add_role(:admin)
 user.save!(:validate => false)
@@ -349,7 +368,8 @@ user = User.new(:id => 12,
         :identification_document => '90',
         :birthday => "15/08/1988".to_date,
         :password => '123456', #Devise.friendly_token[0,20]
-        :password_confirmation => '123456')
+        :password_confirmation => '123456',
+        :remember_created_at => "2016-01-01 00:00:00")
 user.add_role(:director_escuela)
 user.add_role(:admin)
 user.save!(:validate => false)

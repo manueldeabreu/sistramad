@@ -46,7 +46,7 @@ Los formatos permitidos son: .pdf, .doc, .jpeg, .jpj, .png, .docx, .odt</a>
                           <div class="btn-group btn-group-xs">
                             <p>Este Recaudo se encuentra cargado, ¿Desea actualizar este Recaudo?</p>
                             <% @transfer_attachment = TransferAttachment.find_by(user_id: current_user.id,transfer_document_id: transfer_document.id)%>
-                            <%= link_to 'Actualizar Recaudo', edit_transferattachment_path(@transfer_attachment,:tramite => @formalities_master.id), class: 'btn btn-primary list' %>
+                            <%= link_to 'Actualizar Recaudo', edit_transfer_attachment_path(@transfer_attachment,:tramite => @formalities_master.id), class: 'btn btn-primary list' %>
                           </div>
                         </div>
                       <% end %>

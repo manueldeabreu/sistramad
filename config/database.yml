@@ -29,7 +29,7 @@ development:
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  username: rails_dev
+  username: postgres
 
   # The password associated with the postgres role (username).
   password: Alpha
@@ -61,7 +61,7 @@ test: &test
   database: sistramad_test_final
   host: localhost
   port: 5432
-  username: rails_dev
+  username: postgres
   password: Alpha
 
 # As with config/secrets.yml, you never want to store sensitive information,

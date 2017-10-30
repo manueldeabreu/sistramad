@@ -135,6 +135,16 @@
                     </li> 
                   <% end %> 
                 <% end %>
+                </ul> 
+            </li>
+
+            <li class="treeview">
+            <a href="#"><i class="fa fa-circle-o"></i> <span>Cambios en Dedicación</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+              <ul class="treeview-menu">
                 <% if (ProfessorsTransfer.where('process_type = ? and user_id =?',3,current_user.id).empty? && (current_user.has_role? :docente) && (current_user.employee.present?))%>
                 <li><%= link_to new_transfer_attachment_path(:tramite => 3),method: :get do%>
                       <i class="fa fa-circle"></i>

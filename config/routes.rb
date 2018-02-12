@@ -87,6 +87,7 @@ Rails.application.routes.draw do
         get :show
         get :initial_requirements
         get :approve_initial_requirements
+        get :reject_initial_requirements
         get :generate_approval_document
         #get :approve_document
         #get :show_document

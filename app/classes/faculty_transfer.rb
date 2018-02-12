@@ -22,11 +22,11 @@ class FacultyTransfer < Workflow
     def generate_steps(request_workflow)
       #buscar los roles responsables en cda paso
       create_step(request_workflow, 1, "Evaluación de Recaudos iniciales","asuntos_profesorales")
-      create_step(request_workflow, 2, "Analisis y Remisión de juicio a Decano.","consejo_departamento")
-      create_step(request_workflow, 3, "Analisis y Remisión de juicio de Asuntos Profesorales.","decano")
-      create_step(request_workflow, 4, "Verificar Aval Academico y Presupuestario","asuntos_profesorales")
-      create_step(request_workflow, 5, "Analisis y Remisión de juicio a Consejo de Facultad","asuntos_profesorales")
-      create_step(request_workflow, 6, "Analisis Final de Traslado","consejo_facultad")
+      create_step(request_workflow, 2, "Análisis y Remisión de Resolución a Decano.","consejo_departamento")
+      create_step(request_workflow, 3, "Análisis y Remisión de Resolución de Asuntos Profesorales.","decano")
+      create_step(request_workflow, 4, "Verificar Aval Académico y Presupuestario","asuntos_profesorales")
+      create_step(request_workflow, 5, "Análisis y Remisión de Resolución a Consejo de Facultad","asuntos_profesorales")
+      create_step(request_workflow, 6, "Análisis Final de Traslado","consejo_facultad")
     end
 
     def initial_requirements_valid?()
@@ -49,6 +49,10 @@ class FacultyTransfer < Workflow
     def update_procedure_elements()
       self.professors_transfer.procesar! 
       start_step(1)
+    end
+
+    def reject_initial_requirements?
+      reject_step?(1)
     end
 
     def approve_final_step

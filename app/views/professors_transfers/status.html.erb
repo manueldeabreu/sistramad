@@ -1,27 +1,36 @@
 <h2>Estado de Solicitud de Traslado</h2>
-<% professorstransfer = ProfessorsTransfer.find_by_user_id(current_user.id)  %>
-<div class="jumbotron" style="border-radius: 15px; background-color: #dae4f1">
+<% if false %>
+<% @professorstransfer = ProfessorsTransfer.find_by_user_id(23)%> 
+<% end %>
+ <div class="jumbotron" style="border-radius: 15px; background-color: #dae4f1">
   <div class="container">
-    <% id = ProfessorsTransfer.find_by_user_id(current_user.id).id %>
-    <% if professorstransfer.DR? %>
+     <% id = ProfessorsTransfer.find_by_user_id(current_user.id).id %> 
+    <% if @professorstransfer.DR? %>
         <p>Su Solicitud se encuentra en proceso, aun le faltan recaudos por cargar.</p>
     <%end%>
-    <% if professorstransfer.IP? %>
+    <% if @professorstransfer.IP? %>
     <p>Su Solicitud esta en Progreso, le avisaremos por correo electronico a la brevedad posible.</p>
     <%end%>
-    <% if professorstransfer.RE? %>
+    <% if @professorstransfer.RE? %>
         <p>Su Solicitud Fue Denegada.</p>
     <%end%>
-    <% if professorstransfer.AP? %>
+    <% if @professorstransfer.AP? %>
         <p>Su Solicitud ha sido aprobada y Aceptada.</p>
     <%end%>
+    <% if @professorstransfer.CO? %>
+        <p>Su Solicitud ha sido Completada.</p>
+    <%end%> 
+    <% if @professorstransfer.CL? %>
+        <p>Su Solicitud ha sido Cerrada.</p>
+    <%end%> 
   </div>
 </div>
+
 <center><h3>Detalle de Solicitud</h3></center>
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
   <div class="panel panel-info">
-    <div class="panel-heading center"><%= t("professors_transfer") %></div>
+    <div class="panel-heading center"><%=  @professorstransfer.process_type.name %></div>
     <div class="panel-body">
       <div class="form-horizontal">
         <div class="row">
@@ -30,32 +39,39 @@
 
               <label for="user" class="control-label col-sm-5 col-md-4"><%= t("user") %>:</label>
               <div class="col-sm-7 col-md-8">
-                <p class="form-control-static"><%= professorstransfer.user.first_name%>
-                  <%= professorstransfer.user.last_name%>
+                <p class="form-control-static"><%= @professorstransfer.user.first_name%>
+                  <%= @professorstransfer.user.last_name%>
                 </p>
               </div>
 
-              <% if(professorstransfer.process_type.name='Traslados')%>
+              <% if(@professorstransfer.process_type.name='Traslados')%>
                 <label for="type_of_translation" class="control-label col-sm-5 col-md-4"><%= "Tipo de Traslado" %>:</label>
                 <div class="col-sm-7 col-md-8">
-                  <p class="form-control-static"><%= professorstransfer.process_type.name %></p>
+                  <p class="form-control-static"><%= @professorstransfer.process_type.name %></p>
                 </div>
               <%else%>  
                 <label for="type_of_translation" class="control-label col-sm-5 col-md-4"><%= "Tipo de Traslado" %>:</label>
                 <div class="col-sm-7 col-md-8">
-                  <p class="form-control-static"><%= professorstransfer.type.name %></p>
+                  <p class="form-control-static"><%= @professorstransfer.process_type.name %></p>
                 </div>
               <%end%>
 
-              <% if professorstransfer.from.present? %>
+              <label for="created_at" class="control-label col-sm-5 col-md-4">Fecha de Trámite:</label>
+              <div class="col-sm-7 col-md-8">
+                <p class="form-control-static">
+                  <%= @professorstransfer.created_at.to_date %>
+                </p>
+              </div>
+
+              <% if @professorstransfer.from.present? %>
                 <label for="faculty_from" class="control-label col-sm-5 col-md-4"><%= "Origen" %>:</label>
                 <div class="col-sm-7 col-md-8">
-                  <p class="form-control-static"><%= professorstransfer.from.name %></p>
+                  <p class="form-control-static"><%= @professorstransfer.from.name %></p>
                 </div>
 
                 <label for="faculty_to" class="control-label col-sm-5 col-md-4"><%= "Destino" %>:</label>
                 <div class="col-sm-7 col-md-8">
-                  <p class="form-control-static"><%= professorstransfer.to.name %></p>
+                  <p class="form-control-static"><%= @professorstransfer.to.name %></p>
                 </div>
                 <%end%>
             </div>
@@ -72,5 +88,6 @@
   </div>
   </center>
 </div>
-</div>
+</div> 
+
 

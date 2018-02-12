@@ -70,7 +70,7 @@ class TransferAttachmentsController < ApplicationController
           @instance =  instance.new(user_id: current_user.id,name: formalities_master.name, process_type: formalities_master)
           if (params[:tramite]== 1)
             if (params[:tramite][:docs].to_i == uploads) 
-              @instance.procesar!
+              #@instance.procesar! 12/02/2018
             end
             respond_to do |format|
               if @instance.save
@@ -112,7 +112,7 @@ class TransferAttachmentsController < ApplicationController
           #@instance = instance.find_by(user_id: current_user.id, process_type: params[:tramite])
           if ((params[:tramite][:docs].to_i == uploads) && ((params[:tramite][:id].to_i == 1)||(params[:tramite][:id].to_i == 3)))
             if (params[:tramite][:id].to_i == 1)
-              @instance.procesar!
+              #@instance.procesar! 12/02/2018
             end  
             @instance.save
             respond_to do |format|
@@ -141,7 +141,7 @@ class TransferAttachmentsController < ApplicationController
         @instance =  instance.new(user_id: current_user.id,name: formalities_master.name, process_type: formalities_master)
         if (formalities_master.id==1)
           if (params[:tramite][:docs].to_i == uploads) 
-            @instance.procesar!
+            #@instance.procesar! 12/02/18
             respond_to do |format|
               if @instance.save
                   format.html { redirect_to edit_professors_transfer_path (@instance),notice: '' }
@@ -189,7 +189,7 @@ class TransferAttachmentsController < ApplicationController
         @instance = instance.where('process_type = ? and user_id =? and status = ?',params[:tramite][:id],current_user.id,'DR').first
         if ((params[:tramite][:docs].to_i == uploads) && ((params[:tramite][:id].to_i == 1)||(params[:tramite][:id].to_i == 3)))
           if (params[:tramite][:id].to_i == 1)
-            @instance.procesar!
+            #@instance.procesar! 12/02/2018
           end 
           #@instance.procesar
           @instance.save

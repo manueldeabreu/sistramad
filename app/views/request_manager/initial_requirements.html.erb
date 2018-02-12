@@ -55,10 +55,17 @@
       <p>
         <div>
           <%= link_to approve_initial_requirements_request_manager_path(@professors_transfer), class: 'btn btn-success btn-md list' do %> 
-            Aprobar documentos <i class="glyphicon glyphicon-ok"></i> 
+            Aprobar Documentos Iniciales <i class="glyphicon glyphicon-ok"></i> 
           <% end %>
         </div>
       </p>
+      <p>
+      <div>
+        <%= link_to reject_initial_requirements_request_manager_path(@professors_transfer), class: 'btn btn-danger btn-md list' do %> 
+          Rechazar Documentos Iniciales <i class="glyphicon glyphicon-ok"></i> 
+        <% end %>
+      </div>
+    </p>
     </div>
   </div>
 </div>

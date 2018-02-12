@@ -19,21 +19,21 @@
         <% responsable = @professors_transfer.workflow_steps.find_by(step_number:2).role.name %>
         <% if ((step.status == 'IP') && (current_user.has_role?responsable.to_sym))%>
           <% actions = false %>
-          <p><li><%= link_to "Aprobacion de Jefe de Departamento y Recomendación a Decano.", new_review_path(workflow_step_id: step.id,id:@professors_transfer.id)  %></li></p>
+          <p><li><%= link_to "Aprobación de Jefe de Departamento y Recomendación a Decano.", new_review_path(workflow_step_id: step.id,id:@professors_transfer.id)  %></li></p>
         <% end %>
         
         <% step = @professors_transfer.workflow_steps.find_by(step_number: 3) %>
         <% responsable = @professors_transfer.workflow_steps.find_by(step_number:3).role.name%>
         <% if ((step.status == 'IP') && (current_user.has_role?responsable.to_sym))%>
         <% actions = false %>
-        <p><li><%= link_to "Verificación de Aval Academico y Presupuestario.",  new_aval_and_budget_revision_review_path(workflow_step_id: step.id,id:@professors_transfer.id)  %></li></p>
+        <p><li><%= link_to "Verificación de Aval Académico y Presupuestario.",  new_aval_and_budget_revision_review_path(workflow_step_id: step.id,id:@professors_transfer.id)  %></li></p>
         <% end %>
         
         <% step = @professors_transfer.workflow_steps.find_by(step_number:4) %>
         <% responsable = @professors_transfer.workflow_steps.find_by(step_number:4).role.name%>
         <% if ((step.status == 'IP') && (current_user.has_role?responsable.to_sym))%>
         <% actions = false %>
-        <p><li><%= link_to "Analisis y Recomendación a Consejo de Facultad.", new_review_path(workflow_step_id: step.id,id:@professors_transfer.id)  %></li></p>
+        <p><li><%= link_to "Análisis y Recomendación a Consejo de Facultad.", new_review_path(workflow_step_id: step.id,id:@professors_transfer.id)  %></li></p>
         <% end %>
 
         <% step = @professors_transfer.workflow_steps.find_by(step_number:5)%>

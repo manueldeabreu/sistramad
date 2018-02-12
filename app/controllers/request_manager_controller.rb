@@ -24,8 +24,22 @@ class RequestManagerController < ApplicationController
         professors_transfer_instance = get_professors_transfer_instance(@professors_transfer)
         
         if professors_transfer_instance.approve_initial_requirements? 
-          send_email_transfer(professors_transfer_instance.user, 'step_approved',professors_transfer_instance)
-          flash[:success] = 'Los documentos han sido aprobados con exito.'
+          send_email_transfer(@professors_transfer.user, 'step_approved',@professors_transfer)
+          flash[:success] = 'Los documentos han sido aprobados con éxito.'
+          render 'show'
+        else
+          flash[:error] = 'Imposible realizar ésta acción, error en el estado del paso.'
+          render 'show_initial_requirements'
+        end
+      end
+
+      def reject_initial_requirements
+        @professors_transfer = ProfessorsTransfer.find(params[:id])
+        professors_transfer_instance = get_professors_transfer_instance(@professors_transfer)
+        
+        if professors_transfer_instance.reject_initial_requirements? 
+          send_email_transfer(@professors_transfer.user, 'decline',@professors_transfer)
+          flash[:danger] = 'Los documentos han sido rechazados con éxito.'
           render 'show'
         else
           flash[:error] = 'Imposible realizar ésta acción, error en el estado del paso.'

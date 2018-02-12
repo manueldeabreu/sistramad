@@ -46,7 +46,7 @@ class NotificationMailer < ApplicationMailer
   def initial_validation_success_email_transfer(user,transfer)
     @user = user
     @transfer = transfer
-    mail(to: @user.email, subject: 'Notificación de solicitud')
+    mail(to: @user.email, subject: 'Notificación de solicitud: Aprobación de Documentos Iniciales')
   end
 
   def need_to_approve_email_transfer(user,transfer)
@@ -64,7 +64,7 @@ class NotificationMailer < ApplicationMailer
   def decline_email_transfer(user,transfer)
     @user = user
     @transfer = transfer
-    mail(to: @user.email, subject: 'Notificación de declinación de solicitud')
+    mail(to: @user.email, subject: 'Notificación de Rechazo de solicitud')
   end
 
   def step_approved_email_transfer(user)

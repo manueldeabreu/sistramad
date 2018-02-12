@@ -110,7 +110,7 @@
                <% if (ProfessorsTransfer.where('process_type = ? and user_id =?',1,current_user.id).empty? && (current_user.has_role? :docente)) %>
                       <li><%= link_to new_transfer_attachment_path(:tramite => 1),method: :get do%>
                             <i class="fa fa-circle"></i>
-                            Solicitar Trámite
+                            Solicitar Traslado
                       <% end %>
                       </li>
                 <% else %>
@@ -128,11 +128,13 @@
                         <% end %>
                           </li>
                     <% end %>
-                    <li><%= link_to status_professors_transfers_path ,method: :get do%>
-                        <i class="fa fa-circle"></i>
-                        Estatus de Traslado
-                  <% end %>
-                    </li> 
+                    <% if ProfessorsTransfer.where('process_type = ? and user_id =?',1,current_user.id).present? %>
+                        <li><%= link_to status_professors_transfers_path(:tramite => 1 ) ,method: :get do%>
+                          <i class="fa fa-circle"></i>
+                          Estatus de Traslado
+                        <% end %>
+                      </li>   
+                    <% end %> 
                   <% end %> 
                 <% end %>
                 </ul> 
@@ -148,7 +150,7 @@
                 <% if (ProfessorsTransfer.where('process_type = ? and user_id =?',3,current_user.id).empty? && (current_user.has_role? :docente) && (current_user.employee.present?))%>
                 <li><%= link_to new_transfer_attachment_path(:tramite => 3),method: :get do%>
                       <i class="fa fa-circle"></i>
-                      Solicitar Trámite
+                      Solicitar Cambio de Dedicación
                 <% end %>
                 </li>
                 <% else %>
@@ -165,12 +167,14 @@
                                 Solicitar Cambio de Dedicación
                         <% end %>
                           </li>
-                    <% end %>
-                      <li><%= link_to status_professors_transfers_path ,method: :get do%>
-                        <i class="fa fa-circle"></i>
-                        Estatus de Trámite
-                      <% end %>
-                    </li> 
+                    <% end %>       
+                    <% if ProfessorsTransfer.where('process_type = ? and user_id =?',3,current_user.id).present? %>
+                        <li><%= link_to status_professors_transfers_path(:tramite => 3 ) ,method: :get do%>
+                          <i class="fa fa-circle"></i>
+                          Estatus de Cambio de Dedicación
+                        <% end %>
+                      </li>   
+                    <% end %> 
                 <% end %> 
                 <% end %>   
                 <% if ((current_user.has_role? :decano) || (current_user.has_role? :consejo_departamento)|| (current_user.has_role? :consejo_escuela) || (current_user.has_role? :consejo_facultad) || (current_user.has_role? :departamento) || (current_user.has_role? :consejo_universitario))%>

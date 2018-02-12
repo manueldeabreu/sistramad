@@ -21,12 +21,12 @@ class UniversityTransfer < Workflow
     def generate_steps(request_workflow)
       #buscar los roles responsables en cda paso
       create_step(request_workflow, 1, "Evaluación de Recaudos iniciales","asuntos_profesorales")
-      create_step(request_workflow, 2, "Analisis y Remisión de juicio a Consejo de Departamento.","consejo_universitario")
-      create_step(request_workflow, 3, "Analisis y Remisión de juicio a Decano.","consejo_departamento")
-      create_step(request_workflow, 4, "Analisis y Remisión de juicio a Asuntos Profesorales.","decano")
-      create_step(request_workflow, 5, "Verificar Aval Academico y Presupuestario","asuntos_profesorales")
-      create_step(request_workflow, 6, "Analisis y Remisión de juicio a Consejo de Facultad","asuntos_profesorales")
-      create_step(request_workflow, 7, "Analisis Final de Traslado","consejo_facultad")
+      create_step(request_workflow, 2, "Análisis y Remisión de Resolución a Consejo de Departamento.","consejo_universitario")
+      create_step(request_workflow, 3, "Análisis y Remisión de Resolución a Decano.","consejo_departamento")
+      create_step(request_workflow, 4, "Análisis y Remisión de Resolución a Asuntos Profesorales.","decano")
+      create_step(request_workflow, 5, "Verificar Aval Académico y Presupuestario","asuntos_profesorales")
+      create_step(request_workflow, 6, "Análisis y Remisión de Resolución a Consejo de Facultad","asuntos_profesorales")
+      create_step(request_workflow, 7, "Análisis Final de Traslado","consejo_facultad")
     end
   
     def initial_requirements_valid?()
@@ -44,6 +44,10 @@ class UniversityTransfer < Workflow
   
     def approve_initial_requirements?
       approve_step?(1)
+    end
+
+    def reject_initial_requirements?
+      reject_step?(1)
     end
     
     def update_procedure_elements()

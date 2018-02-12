@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-info">
-      <div class="panel-heading center"><%= t('professors_transfers') %></div>
+      <div class="panel-heading center"> Trámite de Traslado </div>
       <div class="panel-body">
         <%= simple_form_for @professors_transfer, :html => {:multipart => true, :class => "form-horizontal"},
                             wrapper: :horizontal_file_input_sistramad,
@@ -27,9 +27,9 @@
                 <%= pf.label :type_of_translate, "Tipo de Traslado:  " %></br>
                 <%= collection_select(:professors_transfer,:type_of_translate,@reference,:id,:name,{ :prompt => "Seleccione Tipo de Traslado"},{ :class => "type_selection"}) %></br></br>
                 <%= pf.label :faculty_from_id , "Origen:  " %></br>
-                <%= pf.collection_select :faculty_from_id, @reference_lists, :id, :name, {:prompt => "Seleccione Origen"}, {:class=>"from_selection"}  %></br></br>
+                <%= pf.collection_select :faculty_from_id, @reference_lists_from, :id, :name, {:prompt => "Seleccione Origen"}, {:class=>"from_selection"}  %></br></br>
                 <%= pf.label :faculty_to_id , "Destino:  " %></br>
-                <%= pf.collection_select :faculty_to_id, @reference_lists, :id, :name, {:prompt => "Seleccione Destino"}, {:class=>"to_selection"}  %>
+                <%= pf.collection_select :faculty_to_id, @reference_lists_to, :id, :name, {:prompt => "Seleccione Destino"}, {:class=>"to_selection"}  %>
               </div>
             </div>            
           <center>

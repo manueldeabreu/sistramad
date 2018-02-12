@@ -21,10 +21,10 @@ class TemporalChange < Workflow
     def generate_steps(request_workflow)
       #buscar los roles responsables en cda paso
       create_step(request_workflow, 1, "Evaluación de Recaudos iniciales","asuntos_profesorales")
-      create_step(request_workflow, 2, "Aprobacion de Jefe de Departamento y Remisión de juicio a Decano.","jefe_departamento")
-      create_step(request_workflow, 3, "Verificar Aval Academico y Presupuestario","decano")
-      create_step(request_workflow, 4, "Analisis y Remisión de juicio a Consejo de Facultad","decano")
-      create_step(request_workflow, 5, "Analisis Final de Traslado","consejo_facultad")
+      create_step(request_workflow, 2, "Aprobación de Jefe de Departamento y Remisión de Resolución a Decano.","jefe_departamento")
+      create_step(request_workflow, 3, "Verificar Aval Académico y Presupuestario","decano")
+      create_step(request_workflow, 4, "Análisis y Remisión de Resolución a Consejo de Facultad","decano")
+      create_step(request_workflow, 5, "Análisis Final de Traslado","consejo_facultad")
     end
   
     def initial_requirements_valid?()
@@ -42,6 +42,10 @@ class TemporalChange < Workflow
   
     def approve_initial_requirements?
       approve_step?(1)
+    end
+
+    def reject_initial_requirements?
+      reject_step?(1)
     end
     
     def update_procedure_elements()

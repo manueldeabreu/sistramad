@@ -57,11 +57,11 @@
         <% if @preview.present? %>
           <thead>
             <tr>
-              <th> Revision </th>
+              <th> Revisión </th>
               <th> Hecha por: </th>
               <th> Veredicto </th>
               <th> Observaciones </th>
-              <th>Fecha creacion</th>
+              <th>Fecha de Observación</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +73,7 @@
                   <% if step.review.approval? %>
                       <td> <h4> <span class="label label-success"> Aprobado </span> </h4> </td>
                   <% else  %>
-                    <td> <h4> <span class="label label-danger"> Desaprobado </span> </h4> </td>
+                    <td> <h4> <span class="label label-danger"> Rechazado </span> </h4> </td>
                   <% end %>
                   <td><%= step.review.comment %></td>
                   <td><%= step.review.created_at.strftime("%d-%m-%Y") %></td>   

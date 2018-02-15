@@ -38,7 +38,14 @@ class RequestManagerController < ApplicationController
         professors_transfer_instance = get_professors_transfer_instance(@professors_transfer)
         
         if professors_transfer_instance.reject_initial_requirements? 
-          send_email_transfer(@professors_transfer.user, 'decline',@professors_transfer)
+          @professors_transfer.workflow_steps.each do |step|
+            if step.DR?
+              step.procesar!
+              step.declinar!
+            end
+          end
+          @professors_transfer.declinar!
+          send_email_transfer(@professors_transfer.user, 'decline_initial_requirements',@professors_transfer)
           flash[:danger] = 'Los documentos han sido rechazados con éxito.'
           render 'show'
         else
@@ -171,7 +178,7 @@ class RequestManagerController < ApplicationController
             transfer_attachment.transfer_document = TransferDocument.find_by(name: 'Copia de Oficio de Aprobación de Traslado')
             transfer_attachment.process_id = professors_transfer
           else
-            transfer_attachment.document = TransferDocument.find_by(name: 'Copia de Oficio de Aprobacion de Cambio en Dedicacion')
+            transfer_attachment.transfer_document = TransferDocument.find_by(name: 'Copia de Oficio de Aprobación de Cambio en Dedicación')
             transfer_attachment.process_id = professors_transfer
           end  
           transfer_attachment.user = user    

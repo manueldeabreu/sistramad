@@ -75,9 +75,20 @@
             <% end %>
           </div>
 
-          <% if actions %>
-            <p><h4>No existen Acciones disponibles<h4/></p>
-          <% end %>      
+          <% resp = nil %>
+          <%  @professors_transfer.workflow_steps.order(:step_number).each do |step| %>
+            <% if step.IP? %>
+              <% resp = step.role.name %>
+            <% end %>
+          <% end %>
+
+            <% if actions %>
+              <p><h4>No existen Acciones disponibles<h4/>
+                <% if resp != nil %>
+                <h4>El Responsable del paso siguiente es : <%=resp%><h4/>
+              <% end %>
+              </p>
+            <% end %>     
         </h4>
       </ul>
     </div>

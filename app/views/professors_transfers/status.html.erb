@@ -74,6 +74,23 @@
                   <p class="form-control-static"><%= @professorstransfer.to.name %></p>
                 </div>
                 <%end%>
+
+                <% @doc1 = TransferDocument.find_by(name:  'Copia de Oficio de Aprobación de Cambio en Dedicación')%>
+                <% @doc2 = TransferDocument.find_by(name:  'Copia de Oficio de Aprobación de Traslado')%>
+                <% @transfer_document1 = TransferAttachment.where('process_id = ? and transfer_document_id = ?',@professorstransfer.id,@doc1.id).first%>
+                <% @transfer_document2 = TransferAttachment.where('process_id = ? and transfer_document_id = ?',@professorstransfer.id,@doc2.id).first%>
+                <% if ((! @transfer_document1.nil?)&&(@professorstransfer.process_type.name='Cambio de Dedicación')) %>
+                  <label for="faculty_to" class="control-label col-sm-5 col-md-4"><%= "Ofício" %>:</label>
+                  <div class="col-sm-7 col-md-8">
+                    <p><li> <%= link_to "Ver Ofício de aprobación.", @transfer_document1.file.url %> </li></p>
+                  </div>
+                <% end %>
+                <% if ((! @transfer_document2.nil?)&&(@professorstransfer.process_type.name='Traslado')) %>
+                  <label for="faculty_to" class="control-label col-sm-5 col-md-4"><%= "Ofício" %>:</label>
+                  <div class="col-sm-7 col-md-8">
+                    <p><li> <%= link_to "Ver Ofício de aprobación.", @transfer_document2.file.url %> </li></p>
+                  </div>
+                <% end %>
             </div>
           </div>
         </div>

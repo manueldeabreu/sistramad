@@ -12,6 +12,7 @@
           <tr>
             <th>Nombre:</th>
             <th>Fecha de creación:</th>
+            <th> Vista Previa:</th> 
             <th>Archivo adjunto:</th>         
           </tr>
         </thead>
@@ -20,6 +21,7 @@
               <tr>
                 <td><%= attch.transfer_document.name%></td>
                 <td><%= attch.created_at.strftime("%d-%m-%Y") %></td>
+                <td><%= link_to  attch.file_file_name , attch.file.url %></td>
                 <td> 
                   <span class="btn btn-info btn-md list ">
                   <%= link_to download_transfer_attachments_path(id: attch.id,user_id: @professors_transfer.user.id), {method: "download"}  do %>

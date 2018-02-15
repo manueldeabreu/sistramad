@@ -17,9 +17,9 @@
       <% elsif @professors_transfer.AP? %>
           <span class="label label-success"> Aprobado </span>
       <% elsif @professors_transfer.RE? %>
-          <span class="label label-success">Negado </span>
+          <span class="label label-danger">Negado </span>
       <% elsif @professors_transfer.CL? %>
-          <span class="label label-danger"> Cerrado </span>
+          <span class="label label-default"> Cerrado </span>
       <% end %>
     </h4>
 

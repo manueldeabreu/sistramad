@@ -67,6 +67,12 @@ class NotificationMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Notificación de Rechazo de solicitud')
   end
 
+  def decline_initial_requirements_email_transfer(user,transfer)
+    @user = user
+    @transfer = transfer
+    mail(to: @user.email, subject: 'Notificación de Rechazo de Documentos Iniciales y de solicitud')
+  end
+
   def step_approved_email_transfer(user)
     @user = user
     mail(to: @user.email, subject: 'Notificación SISTRAMAD: paso aprobado.')

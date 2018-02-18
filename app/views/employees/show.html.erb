@@ -29,17 +29,20 @@
                   <p class="form-control-static"><%= @employee.scale_category.name %></p>
                 </div>
 
-                <label for="scale_category" class="control-label col-sm-5 col-md-4"> Dedicación
-                :</label>
-                <div class="col-sm-7 col-md-8">
-                  <p class="form-control-static"><%= @employee.dedication_classification.name %></p>
-                </div>
+                <% if (@employee.dedication_classification.present?) %>
+                  <label for="scale_category" class="control-label col-sm-5 col-md-4"> Dedicación
+                  :</label>
+                  <div class="col-sm-7 col-md-8">
+                    <p class="form-control-static"><%= @employee.dedication_classification.name %></p>
+                  </div>
+               
 
-                <label for="scale_category" class="control-label col-sm-5 col-md-4"> Inicio en la Dedicación
-                :</label>
-                <div class="col-sm-7 col-md-8">
-                  <p class="form-control-static"><%= @employee.dedication_start_date %></p>
-                </div>
+                  <label for="scale_category" class="control-label col-sm-5 col-md-4"> Inicio en la Dedicación
+                  :</label>
+                  <div class="col-sm-7 col-md-8">
+                    <p class="form-control-static"><%= @employee.dedication_start_date %></p>
+                  </div>
+                <%end%>
               </div>
             </div>
           </div>

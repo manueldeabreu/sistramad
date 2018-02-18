@@ -662,8 +662,8 @@ ReferenceList.create!([
 Employee.create!([
   {user_id: 4, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: nil, dedication_start_date: nil},
   {user_id: 3, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: nil, dedication_start_date: nil},
-  {user_id: 8, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: 56, dedication_start_date: "2017-10-08"},
-  {user_id: 15, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: 56, dedication_start_date: "2016-10-30"}
+  {user_id: 8, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: 54, dedication_start_date: "2017-10-08"},
+  {user_id: 15, type_employee_id: 40, scale_classification_id: 30, scale_category_id: 35, dedication_classification_id: 53, dedication_start_date: "2016-10-30"}
 ])
 Faculty.create!([
   {name: "facultad de ciencias y tecnología", acronym: "FaCyT", active: true},

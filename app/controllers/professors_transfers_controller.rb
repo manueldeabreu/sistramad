@@ -4,15 +4,11 @@ class ProfessorsTransfersController < ApplicationController
 
   before_action :set_professors_transfer, only: [:show, :edit, :update, :destroy]
   before_action :set_user
-  #before_action :set_faculties, only: [:new,:edit]
   before_action :set_references, only: [:new,:edit]
   before_action :set_reference_lists, only: [:new,:edit]
-  #before_action :get_selections, only: [:new,:edit,:get_selections,:get_froms,:get_to]
   before_action :get_selections, only: [:new,:edit,:get_selections]
   before_action :get_selections_dedication, only: [:new,:edit]
-  #before_action :get_froms, only: [:edit,:get_selections,:get_froms,:get_to]
   before_action :get_froms, only: [:edit,:get_froms]
-  #before_action :get_to, only: [:edit,:get_selections,:get_froms,:get_to]
   before_action :get_to, only: [:edit,:get_to]
   before_action :authenticate_user!
   require 'rubygems'
@@ -50,7 +46,7 @@ class ProfessorsTransfersController < ApplicationController
 
     respond_to do |format|
       if @professors_transfer.save
-        format.html { redirect_to @professors_transfer, notice: 'Professors transfer was successfully created.' }
+        format.html { redirect_to @professors_transfer, notice: 'Trámite fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @professors_transfer }
       else
         format.html { render :new }
@@ -148,11 +144,7 @@ class ProfessorsTransfersController < ApplicationController
   end
 
   def status
-    #@professorstransfer = ProfessorsTransfer.where(type_of_translate: 50,user_id: current_user.id).limit(1)
-    #@professorstransfer = ProfessorsTransfer.where("user_id=? AND type_of_translate =?", current_user.id ,50).limit(1)
-    #@professorstransfer = ProfessorsTransfer.find_by_user_id(current_user.id)
     @professorstransfer = User.find_by(id: current_user.id).professors_transfer.find_by_process_type(params[:tramite].to_i)
-    #@professorstransfer = ProfessorsTransfer.find_by_user_id_and_process_type(current_user.id,3)
   end  
 
   private
@@ -179,7 +171,11 @@ class ProfessorsTransfersController < ApplicationController
 
     def set_references
       if (@professors_transfer.process_type.id==1)
-          @reference = Reference.where(:name => ['Universidades','Facultades','Escuela o Departamento'])
+        if (current_user.employee.present?)
+          @reference = Reference.where(:name => ['Facultades','Escuela o Departamento'])
+        else  
+          @reference = Reference.where("name IN (?)",'Universidades')
+        end
       end
       if (@professors_transfer.process_type.id==3)
         @reference = Reference.find_by(name: 'Tipo de Cambio')
@@ -201,17 +197,33 @@ class ProfessorsTransfersController < ApplicationController
         if (@references.name=='Universidades')
           @reference_lists_from = ReferenceList.where("name not IN (?) AND reference_id =?", 'Universidad de Carabobo',params[:type_of_translate])
           @reference_lists_to = ReferenceList.where("name IN (?) AND reference_id =?", 'Universidad de Carabobo',params[:type_of_translate])
-        else
+        elsif (@references.name=='Facultades')
           @reference_lists_from = @references.reference_lists
           @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,params[:type_of_translate])
-          #@reference_lists_to = @references.reference_lists.order(name: :desc)
-        end    
+          if ((current_user.employee.present?)&&(current_user.employee.faculty_classification.present?))
+            @reference_lists_from = ReferenceList.where("id IN (?) AND reference_id =?",current_user.employee.faculty_classification_id,params[:type_of_translate])
+            @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,params[:type_of_translate])
+         end 
+        else  
+          @references = Reference.find(9)
+          @reference_lists_from = @references.reference_lists
+          @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,params[:type_of_translate])
+          if ((current_user.employee.present?)&&(current_user.employee.department_classification.present?))
+            @reference_lists_from = ReferenceList.where("id IN (?) AND reference_id =?",current_user.employee.department_classification_id,params[:type_of_translate])
+            @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,params[:type_of_translate])
+          end  
+        end 
       else
-        @references = Reference.find(9)
-        @reference_lists_from = @references.reference_lists
-        @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,params[:type_of_translate])
-        #@reference_lists_to = @references.reference_lists.order(name: :desc)
-      end
+        if (current_user.employee.present?)
+          @references = Reference.find(8)
+          @reference_lists_from = @references.reference_lists
+          @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,@references.id)
+        else  
+          @references = Reference.find(7)
+          @reference_lists_from = ReferenceList.where("name not IN (?) AND reference_id =?", 'Universidad de Carabobo',7)
+          @reference_lists_to = ReferenceList.where("name IN (?) AND reference_id =?", 'Universidad de Carabobo',7)
+       end 
+      end     
     end
 
     def get_selections_dedication
@@ -241,6 +253,15 @@ class ProfessorsTransfersController < ApplicationController
         else
           if (params[:faculty_from_id]== params[:faculty_to_id])
             @reference_lists_from = ReferenceList.where("id NOT IN (?) AND reference_id =?", params[:faculty_to_id],params[:type_of_translate])
+          end
+          if (@references.name=='Facultades')
+            if ((current_user.employee.present?)&&(current_user.employee.faculty_classification.present?))
+              @reference_lists_from = current_user.employee.faculty_classification
+            end  
+          else
+            if ((current_user.employee.present?)&&(current_user.employee.department_classification.present?))
+              @reference_lists_from = current_user.employee.department_classification
+            end
           end
         end  
       end

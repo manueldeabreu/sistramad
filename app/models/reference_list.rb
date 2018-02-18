@@ -7,9 +7,13 @@ class ReferenceList < ApplicationRecord
   has_many   :employees_category, :class_name => 'Employee', :foreign_key => 'scale_category_id'
   has_many   :employees_classification, :class_name => 'Employee', :foreign_key => 'scale_classification_id'
   has_many   :employees_dedication, :class_name => 'Employee', :foreign_key => 'dedication_classification_id'
+  has_many   :employees_faculty, :class_name => 'Employee', :foreign_key => 'faculty_classification_id'
+  has_many   :employees_department, :class_name => 'Employee', :foreign_key => 'department_classification_id'
 
   scope :type_employee, -> { where(:reference_id => ReferenceConstant::TYPE_EMPLOYEE) }
   scope :scale_classification, -> { where(:reference_id => ReferenceConstant::SCALE_CLASSIFICATION) }
   scope :scale_category, -> { where(:reference_id => ReferenceConstant::SCALE_CATEGORY) }
   scope :dedication_classification, -> { where(:reference_id => ReferenceConstant::DEDICATION_CLASSIFICATION) }
+  scope :faculty_classification, -> { where(:reference_id => ReferenceConstant::FACULTY_CLASSIFICATION) }
+  scope :department_classification, -> { where(:reference_id => ReferenceConstant::DEPARTMENT_CLASSIFICATION) }
 end

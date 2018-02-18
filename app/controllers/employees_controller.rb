@@ -74,6 +74,8 @@ class EmployeesController < ApplicationController
           :type_employee_id,
           :scale_classification_id,
           :scale_category_id,
+          :faculty_classification_id,
+          :department_classification_id,
           :dedication_classification_id,
           :dedication_start_date)
     end

@@ -11,7 +11,6 @@
                 <div class="col-sm-7 col-md-8">
                   <p class="form-control-static"><%= @employee.user.first_name %> <%= @employee.user.last_name %>  </p>
                 </div>
-
                 <label for="type_employee" class="control-label col-sm-5 col-md-4"><%= t("type_employee.long") %>:</label>
                 <div class="col-sm-7 col-md-8">
                   <p class="form-control-static"><%= @employee.type_employee.name %></p>
@@ -29,6 +28,22 @@
                   <p class="form-control-static"><%= @employee.scale_category.name %></p>
                 </div>
 
+                <% if (@employee.faculty_classification.present?) %>
+                  <label for="faculty_classification" class="control-label col-sm-5 col-md-4"> Facultad
+                  :</label>
+                  <div class="col-sm-7 col-md-8">
+                    <p class="form-control-static"><%= @employee.faculty_classification.name %></p>
+                  </div>
+                <%end%>
+
+                <% if (@employee.department_classification.present?) %>
+                 <label for="department_classification" class="control-label col-sm-5 col-md-4"> Departamento o Escuela
+                 :</label>
+                 <div class="col-sm-7 col-md-8">
+                   <p class="form-control-static"><%= @employee.department_classification.name %></p>
+                 </div>
+                <%end%>
+
                 <% if (@employee.dedication_classification.present?) %>
                   <label for="scale_category" class="control-label col-sm-5 col-md-4"> Dedicación
                   :</label>
@@ -43,6 +58,7 @@
                     <p class="form-control-static"><%= @employee.dedication_start_date %></p>
                   </div>
                 <%end%>
+
               </div>
             </div>
           </div>

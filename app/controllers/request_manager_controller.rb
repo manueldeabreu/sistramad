@@ -101,8 +101,10 @@ class RequestManagerController < ApplicationController
         
         if @professors_transfer.IP? and steps_approved
           @professors_transfer.aprobar!
-          flash[:success] = 'Solicitud aprobada con exito!'
-          redirect_to  request_manager_path(@professors_transfer)
+          if (change_employee(@professors_transfer)== true)
+            flash[:success] = 'Solicitud aprobada con exito!'
+            redirect_to  request_manager_path(@professors_transfer)
+          end  
         else
           flash[:error] = 'Imposible completar la solicitud, todos los pasos deben estar aprobados.'
           redirect_to  request_manager_path(@professors_transfer) 
@@ -164,6 +166,30 @@ class RequestManagerController < ApplicationController
           instance = get_request_from_factory(type)
           instance.professors_transfer = professors_transfer
           return instance
+        end
+
+        def change_employee(professors_transfer)
+          process_type = professors_transfer.process_type.id
+          if (process_type ==1)
+            type = Reference.find(professors_transfer.type_of_translate).name
+            if(type != 'Universidades')
+              employee = professors_transfer.user.employee
+              if(type == 'Facultades')
+                employee.faculty_classification_id = professors_transfer.faculty_to_id
+                employee.save
+              else
+                employee.department_classification_id = professors_transfer.faculty_to_id
+                employee.save
+              end  
+            end  
+          end
+          if (process_type ==3)
+            type = ReferenceList.find(professors_transfer.type_of_translate).name
+            employee = professors_transfer.user.employee
+            employee.dedication_classification_id = professors_transfer.faculty_to_id
+            employee.save
+          end 
+          return true
         end
     
         def get_request_from_factory(type)

@@ -31,11 +31,11 @@ class ReferencesController < ApplicationController
     respond_to do |format|
       if @reference.save
         # format.html { redirect_to @reference, notice: 'Reference was successfully created.' }
-        flash[:success] = 'Reference was successfully created.'
+        flash[:success] = 'Referencia fue creada exitosamente.'
         format.html { redirect_to @reference }
         format.json { render :show, status: :created, location: @reference }
       else
-        flash[:danger] = 'There was a problem creating the Reference.'
+        flash[:danger] = 'Hubo un problema al crear la Referencia.'
         format.html { render :new }
         format.json { render json: @reference.errors, status: :unprocessable_entity }
       end
@@ -47,7 +47,7 @@ class ReferencesController < ApplicationController
   def update
     respond_to do |format|
       if @reference.update(reference_params)
-        format.html { redirect_to @reference, notice: 'Reference was successfully updated.' }
+        format.html { redirect_to @reference, notice: 'Referencia fue actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @reference }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class ReferencesController < ApplicationController
     @reference.destroy
     respond_to do |format|
       # format.html { redirect_to references_url, notice: 'Reference was successfully destroyed.' }
-      flash[:success] = 'Reference was successfully destroyed.'
+      flash[:success] = 'Referencia fue eliminada exitosamente..'
       format.html { redirect_to references_url }
 
       format.json { head :no_content }

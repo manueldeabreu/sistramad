@@ -28,7 +28,7 @@ class FormalitiesDocumentsController < ApplicationController
 
     respond_to do |format|
       if @formalities_document.save
-        format.html { redirect_to @formalities_document, notice: 'Formalities document was successfully created.' }
+        format.html { redirect_to @formalities_document, notice: 'Tipo de Documento creado Exitosamente.' }
         format.json { render :show, status: :created, location: @formalities_document }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class FormalitiesDocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @formalities_document.update(formalities_document_params)
-        format.html { redirect_to @formalities_document, notice: 'Formalities document was successfully updated.' }
+        format.html { redirect_to @formalities_document, notice: 'Tipo de Documento actualizado Exitosamente.' }
         format.json { render :show, status: :ok, location: @formalities_document }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class FormalitiesDocumentsController < ApplicationController
   def destroy
     @formalities_document.destroy
     respond_to do |format|
-      format.html { redirect_to formalities_documents_url, notice: 'Formalities document was successfully destroyed.' }
+      format.html { redirect_to formalities_documents_url, notice: 'Tipo de Documento eliminado Exitosamente.' }
       format.json { head :no_content }
     end
   end

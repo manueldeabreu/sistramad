@@ -28,7 +28,7 @@ class ReferenceListsController < ApplicationController
 
     respond_to do |format|
       if @reference_list.save
-        format.html { redirect_to @reference_list, notice: 'Reference list was successfully created.' }
+        format.html { redirect_to @reference_list, notice: 'Lista de Referencia fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @reference_list }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ReferenceListsController < ApplicationController
   def update
     respond_to do |format|
       if @reference_list.update(reference_list_params)
-        format.html { redirect_to @reference_list, notice: 'Reference list was successfully updated.' }
+        format.html { redirect_to @reference_list, notice: 'Lista de Referencia fue actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @reference_list }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ReferenceListsController < ApplicationController
   def destroy
     @reference_list.destroy
     respond_to do |format|
-      format.html { redirect_to reference_lists_url, notice: 'Reference list was successfully destroyed.' }
+      format.html { redirect_to reference_lists_url, notice: 'Lista de Referencia fue eliminada exitosamente..' }
       format.json { head :no_content }
     end
   end

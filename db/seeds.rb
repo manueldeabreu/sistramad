@@ -676,9 +676,9 @@ Faculty.create!([
 ])
 #Seeds de Luis
 
-#employee = Employee.new(:user_id => 5,:type_employee_id => 40,:scale_classification_id => 30,:scale_category_id => 35)
-#employee.faculties << Faculty.find(1)
-#employee.save!
+employee = Employee.new(:user_id => 5,:type_employee_id => 40,:scale_classification_id => 30,:scale_category_id => 35)
+employee.faculties << Faculty.find(1)
+employee.save!
 
 =begin
 Employee::HABTM_Faculties.create!([

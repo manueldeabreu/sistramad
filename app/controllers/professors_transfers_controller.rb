@@ -7,10 +7,13 @@ class ProfessorsTransfersController < ApplicationController
   #before_action :set_faculties, only: [:new,:edit]
   before_action :set_references, only: [:new,:edit]
   before_action :set_reference_lists, only: [:new,:edit]
-  before_action :get_selections, only: [:new,:edit,:get_selections,:get_froms,:get_to]
+  #before_action :get_selections, only: [:new,:edit,:get_selections,:get_froms,:get_to]
+  before_action :get_selections, only: [:new,:edit,:get_selections]
   before_action :get_selections_dedication, only: [:new,:edit]
-  before_action :get_froms, only: [:edit,:get_selections,:get_froms,:get_to]
-  before_action :get_to, only: [:edit,:get_selections,:get_froms,:get_to]
+  #before_action :get_froms, only: [:edit,:get_selections,:get_froms,:get_to]
+  before_action :get_froms, only: [:edit,:get_froms]
+  #before_action :get_to, only: [:edit,:get_selections,:get_froms,:get_to]
+  before_action :get_to, only: [:edit,:get_to]
   before_action :authenticate_user!
   require 'rubygems'
   require 'zip'
@@ -199,13 +202,15 @@ class ProfessorsTransfersController < ApplicationController
           @reference_lists_from = ReferenceList.where("name not IN (?) AND reference_id =?", 'Universidad de Carabobo',params[:type_of_translate])
           @reference_lists_to = ReferenceList.where("name IN (?) AND reference_id =?", 'Universidad de Carabobo',params[:type_of_translate])
         else
-          @reference_lists_from = @references.reference_lists.order(:name)
-          @reference_lists_to = @references.reference_lists.order(name: :desc)
+          @reference_lists_from = @references.reference_lists
+          @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,params[:type_of_translate])
+          #@reference_lists_to = @references.reference_lists.order(name: :desc)
         end    
       else
         @references = Reference.find(9)
-        @reference_lists_from = @references.reference_lists.order(:name)
-        @reference_lists_to = @references.reference_lists.order(name: :desc)
+        @reference_lists_from = @references.reference_lists
+        @reference_lists_to = ReferenceList.where("id not IN (?) AND reference_id =?",@reference_lists_from.first.id,params[:type_of_translate])
+        #@reference_lists_to = @references.reference_lists.order(name: :desc)
       end
     end
 
@@ -217,13 +222,14 @@ class ProfessorsTransfersController < ApplicationController
         @references = Reference.find_by(name: 'Tipo de Cambio')
         @reference_lists = @references.reference_lists
         if current_user.employee.present?
+          @references = Reference.find_by(name: 'Dedicacion')
           @reference_lists2 = current_user.employee.dedication_classification
+          @reference_lists3 = ReferenceList.where("id NOT IN (?) AND reference_id =?",@reference_lists2.id,@references.id)
         else
+          @references = Reference.find_by(name: 'Dedicacion')
           @reference_lists2 = @references.reference_lists
+          @reference_lists3 = @references.reference_lists
         end    
-        @references = Reference.find_by(name: 'Dedicacion')
-        #@reference_lists3 = @references.reference_lists
-        @reference_lists3 = ReferenceList.where("id NOT IN (?) AND reference_id =?",@reference_lists2.id,@references.id)
       end
     end
 
@@ -233,7 +239,9 @@ class ProfessorsTransfersController < ApplicationController
         if (@references.name=='Universidades')
           @reference_lists_from = ReferenceList.where("name not IN (?) AND reference_id =?", 'Universidad de Carabobo',params[:type_of_translate])
         else
-          @reference_lists_from = ReferenceList.where("id NOT IN (?) AND reference_id =?", params[:faculty_to_id],params[:type_of_translate])
+          if (params[:faculty_from_id]== params[:faculty_to_id])
+            @reference_lists_from = ReferenceList.where("id NOT IN (?) AND reference_id =?", params[:faculty_to_id],params[:type_of_translate])
+          end
         end  
       end
     end
@@ -244,7 +252,9 @@ class ProfessorsTransfersController < ApplicationController
         if (@references.name=='Universidades')
           @reference_lists_to = ReferenceList.where("name IN (?) AND reference_id =?", 'Universidad de Carabobo',params[:type_of_translate])
         else 
-          @reference_lists_to = ReferenceList.where("id NOT IN (?) AND reference_id =?", params[:faculty_from_id],params[:type_of_translate])
+          if (params[:faculty_from_id]== params[:faculty_to_id])
+            @reference_lists_to = ReferenceList.where("id NOT IN (?) AND reference_id =?", params[:faculty_from_id],params[:type_of_translate])
+          end
         end  
       end
     end

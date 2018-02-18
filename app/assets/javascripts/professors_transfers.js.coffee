@@ -30,6 +30,7 @@ $(document).ready ->
       data:
         type_of_translate: $('.type_selection option:selected').val()
         faculty_from_id: $('.from_selection option:selected').val()
+        faculty_to_id: $('.to_selection option:selected').val()
 
 $(document).ready ->  
   $(".to_selection").on "change", ->
@@ -40,6 +41,7 @@ $(document).ready ->
       data:
         type_of_translate: $('.type_selection option:selected').val()
         faculty_to_id: $('.to_selection option:selected').val()
+        faculty_from_id: $('.from_selection option:selected').val()
 
 $(document).ready ->
   $(".type_selection_dedication").on "change", ->

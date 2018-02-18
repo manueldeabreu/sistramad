@@ -27,7 +27,7 @@
                 <%= pf.label :type_of_translate, "Tipo de Traslado:  " %></br>
                 <%= collection_select(:professors_transfer,:type_of_translate,@reference,:id,:name,{ :prompt => "Seleccione Tipo de Traslado"},{ :class => "type_selection"}) %></br></br>
                 <%= pf.label :faculty_from_id , "Origen:  " %></br>
-                <%= pf.collection_select :faculty_from_id, @reference_lists_from, :id, :name, {:prompt => "Seleccione Origen"}, {:class=>"from_selection"}  %></br></br>
+                <%= pf.collection_select :faculty_from_id,@reference_lists_from, :id, :name, {:prompt => "Seleccione Origen"}, {:class=>"from_selection"}  %></br></br>
                 <%= pf.label :faculty_to_id , "Destino:  " %></br>
                 <%= pf.collection_select :faculty_to_id, @reference_lists_to, :id, :name, {:prompt => "Seleccione Destino"}, {:class=>"to_selection"}  %>
               </div>

@@ -49,9 +49,17 @@ class TransferAttachmentsController < ApplicationController
           attach = attachment[1]
           attach.each do |doc|
             if doc[1][:file] != nil
-                uploads += 1
+                found = false
                 @transfer_attachment = current_user.transfer_attachments.new(transfer_attachment_params(doc[1]))
-                @transfer_attachment.save
+                current_user.transfer_attachments.each do |current|
+                  if (current.transfer_document_id == doc[1][:transfer_document_id])
+                    found=true
+                  end 
+                end  
+                if (found == false)
+                  uploads += 1
+                  @transfer_attachment.save
+                end
               if doc[1][:transfer_document_id] == '16' || doc[1][:transfer_document_id] == '17'
                 inform = true
               end
@@ -64,7 +72,7 @@ class TransferAttachmentsController < ApplicationController
     if (docsToUpload != uploads)
       if @transfer_attachment.save && !inform
         instance =FormalitiesMaster.find_by(id: params[:tramite][:id]).table_manager.classify.constantize
-        if (instance.where('process_type = ? and user_id =?',params[:tramite][:id],current_user.id).empty?)
+        if (instance.where('process_type = ? and user_id =? and status != ?',params[:tramite][:id],current_user.id,'CL').empty?)
          #if (instance.find_by(user_id: current_user.id,process_type: params[:tramite][:id]).nil?)
           formalities_master = FormalitiesMaster.find_by(id: params[:tramite][:id])
           @instance =  instance.new(user_id: current_user.id,name: formalities_master.name, process_type: formalities_master)
@@ -75,7 +83,7 @@ class TransferAttachmentsController < ApplicationController
             respond_to do |format|
               if @instance.save
                   format.html { redirect_to edit_professors_transfer_path (@instance), 
-                    notice: 'Para terminar de Solicitar indique Facultad de Origen y Destino.' }
+                    notice: 'Para continuar con la Solicitud indique Tipo de Traslado' }
                   format.json { render :show, status: :created, location: @instance }
               else
                 format.html { render :new }
@@ -89,7 +97,7 @@ class TransferAttachmentsController < ApplicationController
             respond_to do |format|
               if @instance.save
                   format.html { redirect_to edit_professors_transfer_path (@instance), 
-                    notice: 'Para terminar de Solicitar indique Facultad de Origen y Destino.' }
+                    notice: 'Para continuar con la Solicitud indique Tipo de Cambio en la Dedicación' }
                   format.json { render :show, status: :created, location: @instance }
               else
                 format.html { render :new }
@@ -99,7 +107,7 @@ class TransferAttachmentsController < ApplicationController
           else
             respond_to do |format|
                 if @instance.save
-                    format.html { redirect_to @instance, notice: 'El Trámite se Solicito Correctamente.' }
+                    format.html { redirect_to @instance, notice: 'El Trámite se Solicitó Correctamente.' }
                     format.json { render :show, status: :created, location: @instance }
                 else
                   format.html { render :new }
@@ -135,7 +143,7 @@ class TransferAttachmentsController < ApplicationController
       end
     elsif (docsToUpload == uploads)
       instance =FormalitiesMaster.find_by(id: params[:tramite][:id]).table_manager.classify.constantize
-      if (instance.where('process_type = ? and user_id =?',params[:tramite][:id],current_user.id).empty?)
+      if (instance.where('process_type = ? and user_id =? and status not in (?)',params[:tramite][:id],current_user.id,'CL').empty?)
         #if (instance.find_by(user_id: current_user.id,process_type: params[:tramite][:id]).nil?)
         formalities_master = FormalitiesMaster.find_by(id: params[:tramite][:id])
         @instance =  instance.new(user_id: current_user.id,name: formalities_master.name, process_type: formalities_master)

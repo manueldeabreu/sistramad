@@ -55,7 +55,7 @@ class ReviewsController < ApplicationController
     professors_transfer_instance.approve_step?(@step.step_number)
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'La revision se completo con Exito' }
+        format.html { redirect_to @review, notice: 'La Revisión se completo con Exito' }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }
@@ -69,7 +69,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to @review, notice: 'La Revisión se actualizó con Exito.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -83,7 +83,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to reviews_url, notice: 'La Revisión se eliminó con Exito.' }
       format.json { head :no_content }
     end
   end

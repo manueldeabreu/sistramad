@@ -25,8 +25,10 @@
                 <%= f.association :type_employee, :label => t("type_employee.short"), :include_blank => false, collection: ReferenceList.type_employee %>
                 <%= f.association :scale_classification, :label => t("scale_classification.short"), :include_blank => false, collection: ReferenceList.scale_classification %>
                 <%= f.association :scale_category, :label => t("scale_category.short"), :include_blank => false, collection: ReferenceList.scale_category %>
+                <% if (false)%>
                 <%= f.association :faculty_classification, :label => 'Facultad', :include_blank => false, collection: ReferenceList.faculty_classification %>
                 <%= f.association :department_classification, :label => 'Departamento o Escuela', :include_blank => false, collection: ReferenceList.department_classification %>
+                <%end%>
                 <%= f.association :dedication_classification, :label => 'Dedicación', :include_blank => false, collection: ReferenceList.dedication_classification %>
                 <%= f.input :dedication_start_date, start_year: Date.today.year - 30, end_year: Date.today.year , :label => 'Fecha de Inicio en la Dedicación' %>
               </div>
